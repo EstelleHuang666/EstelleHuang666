@@ -2,7 +2,7 @@
  <!DOCTYPE HTML>
 <html >
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   
     <title>Overview of MCMC Methods | What&#39;s life without whimsy?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
@@ -26,11 +26,11 @@
     <link rel="apple-touch-icon" href="/img/pacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
   <body>
-    <header>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
       <div>
 		
 			<div id="imglogo">
@@ -41,7 +41,7 @@
 				<h1 class="site-name"><a href="/" title="What&#39;s life without whimsy?">What&#39;s life without whimsy?</a></h1>
 				<h2 class="blog-motto">Homepage of Yuanhanqing Huang</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -60,7 +60,7 @@
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -76,15 +76,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/12/25/Overview-of-MCMC-Methods/" title="Overview of MCMC Methods" itemprop="url">Overview of MCMC Methods</a>
+      <a href="/2017/12/12/Overview-of-MCMC-Methods/" title="Overview of MCMC Methods" itemprop="url">Overview of MCMC Methods</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Yuanhanqing Huang">Yuanhanqing Huang</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-12-25T05:52:45.000Z" itemprop="datePublished">2017-12-25</time>
-    更新日期:<time datetime="2017-12-25T05:54:04.958Z" itemprop="dateModified">2017-12-25</time>
+    <time datetime="2017-12-12T05:52:45.000Z" itemprop="datePublished">2017-12-12</time>
+    Updated:<time datetime="2017-12-29T22:59:26.528Z" itemprop="dateModified">2017-12-30</time>
     
   </p>
 </header>
@@ -92,20 +92,17 @@
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-We-Need-MCMC-Methods"><span class="toc-number">1.</span> <span class="toc-text">Why We Need MCMC Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sampling-Methods"><span class="toc-number">2.</span> <span class="toc-text">Sampling Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Simplest-Sampling-Methods-Inverse-of-CDF"><span class="toc-number">2.1.</span> <span class="toc-text">Simplest Sampling Methods: Inverse of CDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rejection-Sampling"><span class="toc-number">2.2.</span> <span class="toc-text">Rejection Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Importance-Sampling"><span class="toc-number">2.3.</span> <span class="toc-text">Importance Sampling</span></a></li></ol></li></ol>
 		</div>
 		
-		<h1 id="Why-We-Need-MCMC-Methods"><a href="#Why-We-Need-MCMC-Methods" class="headerlink" title="Why We Need MCMC Methods"></a>Why We Need MCMC Methods</h1><p>Under the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could firstly have a glimpse of the Bayesian equation:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(y_&#123;i&#125;|x)=\frac&#123;P(x|y_&#123;i&#125;)P(y_&#123;i&#125;)&#125;&#123;\sum&#123;P(x|y)P(y)&#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>It is always difficult to calculate the denominator, since it is always impossible to enumerate all of the possible<br><img src="http://chart.googleapis.com/chart?cht=tx&chl= y" style="border:none;"><br>and corresponding<br><img src="http://chart.googleapis.com/chart?cht=tx&chl= x" style="border:none;"> from my understanding. And that’s also why Geoffrey Hinton put forward Convergence Divergence to train Boltzmann Machine. Therefore we needs methods to help us approximate the posterior. Currently there are two methods, one is variational inference, the other is Monte Carlo Markov Chain sampling methods, which is the topic for this article.<br>Under ordinary inference problem setting, when we need to figure out certain parameters, we should calculate them in the following way:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\theta = \int_&#123;\theta&#125;&#123;\theta P(\theta|x)d\theta&#125;</div></pre></td></tr></table></figure></p>
-<p>In MCMC, after sampling adequate number of samples from the posterior distribution, we could approximate the original equation in the following way:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\hat&#123;E&#125;_&#123;\theta&#125; =\frac&#123;1&#125;&#123;n&#125; \sum_&#123;i=1&#125;^&#123;n&#125;&#123;\theta^&#123;(i)&#125;&#125;</div></pre></td></tr></table></figure></p>
+		<h1 id="Why-We-Need-MCMC-Methods"><a href="#Why-We-Need-MCMC-Methods" class="headerlink" title="Why We Need MCMC Methods"></a>Why We Need MCMC Methods</h1><p>Under the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could firstly have a glimpse of the Bayesian equation:<br>$$ P(y<em>{i}|x)=\frac{P(x|y</em>{i})P(y<em>{i})}{\sum{P(x|y)P(y)}} $$<br>It is always difficult to calculate the denominator, since it is always impossible to enumerate all of the possible<br><img src="http://chart.googleapis.com/chart?cht=tx&chl= y" style="border:none;"><br>and corresponding<br><img src="http://chart.googleapis.com/chart?cht=tx&chl= x" style="border:none;"> from my understanding. And that’s also why Geoffrey Hinton put forward Convergence Divergence to train Boltzmann Machine. Therefore we needs methods to help us approximate the posterior. Currently there are two methods, one is variational inference, the other is Monte Carlo Markov Chain sampling methods, which is the topic for this article.<br>Under ordinary inference problem setting, when we need to figure out certain parameters, we should calculate them in the following way:<br>$$ \theta = \int</em>{\theta}{\theta P(\theta|x)d\theta} $$<br>In MCMC, after sampling adequate number of samples from the posterior distribution, we could approximate the original equation in the following way:<br>$$ \hat{E}<em>{\theta} =\frac{1}{n} \sum</em>{i=1}^{n}{\theta^{(i)}} $$</p>
 <h1 id="Sampling-Methods"><a href="#Sampling-Methods" class="headerlink" title="Sampling Methods"></a>Sampling Methods</h1><h2 id="Simplest-Sampling-Methods-Inverse-of-CDF"><a href="#Simplest-Sampling-Methods-Inverse-of-CDF" class="headerlink" title="Simplest Sampling Methods: Inverse of CDF"></a>Simplest Sampling Methods: Inverse of CDF</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">u ~ U(0, 1)</div><div class="line">x = CDF_inverse(u)</div></pre></td></tr></table></figure>
 <p>This sampling method is the one we see most in our undergraduate Probability class. There is a problem haunting it: all too often, it is difficult or even impossible to write out the function of CDF_inverse. This problem compels us to find a more feasible way to execute sampling.</p>
 <h2 id="Rejection-Sampling"><a href="#Rejection-Sampling" class="headerlink" title="Rejection Sampling"></a>Rejection Sampling</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">while not enough samples:</div><div class="line">    x_i ~ q(x)</div><div class="line">    u ~ U(0, 1)</div><div class="line">    if u &lt; p(x_i)/(M * q(x_i)) then</div><div class="line">        accept x_i</div><div class="line">    else </div><div class="line">        reject x_i</div><div class="line">    end if</div><div class="line">end while</div></pre></td></tr></table></figure>
 <p><img src="reject_sampling.png" alt=""><br>Rejection sampling does not require knowing the function of inverse of CDF. Instead, it use a sampling function q(x), which often has a comparatively simpler form. The influence of original posterior distribution p(x) is demonstrated in the accaption-rejection judgement. When the value of fraction p(x)/Mq(x) is big, it is easier to accept this samples. However, the major problem of this method is that the frequency of rejection is much higher than that of accpetance, especially when x is of high dimension. In this case, rejection sampling is not efficient, and its adaptation is needed.<br>There exists adaptive rejection sampling, where adaptation has been done with respect to the sampling function q(x). By making q(x) approximates p(x) as close as possible, the acception rate could be improved dramatically. The illustration for this adaptation is following:<br><img src="adaptive_rejection.png" alt=""><br>Note that in order to make sure that every tagent has value larger than p(x), p(x) or its transformation must be concave.  </p>
 <h2 id="Importance-Sampling"><a href="#Importance-Sampling" class="headerlink" title="Importance Sampling"></a>Importance Sampling</h2><p>In importance sampling, we introduce q(x) which is comparatively easier to sample than p(x) as that in rejection sampling. Yet q(x) here has different usage. We could transform the original expectation equation into the following form:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">E[f(x)] = \int_&#123;x&#125;&#123;[f(x)\frac&#123;p(x)&#125;&#123;q(x)&#125;]q(x)dx&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://chart.googleapis.com/chart?cht=tx&chl= q(x)" style="border:none;"> is a new distribution function, and <img src="http://chart.googleapis.com/chart?cht=tx&chl= f(x)\frac{p(x)}{q(x)}" style="border:none;">  is a new target function. If we could sample a series of <img src="http://chart.googleapis.com/chart?cht=tx&chl= x^{(i)}" style="border:none;"> from the distribution <img src="http://chart.googleapis.com/chart?cht=tx&chl= q(x)" style="border:none;">. Then the original integral could be approximated by the following sum:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">E[f(x)] = \frac&#123;1&#125;&#123;N&#125;\sum_&#123;i&#125;&#123;f(x^&#123;(i)&#125;)\frac&#123;p(x^&#123;(i)&#125;)&#125;&#123;q(x^&#123;(i)&#125;)&#125;&#125;</div></pre></td></tr></table></figure></p>
+<p>$$ E[f(x)] = \int<em>{x}{[f(x)\frac{p(x)}{q(x)}]q(x)dx} $$<br><img src="http://chart.googleapis.com/chart?cht=tx&chl= q(x)" style="border:none;"> is a new distribution function, and <img src="http://chart.googleapis.com/chart?cht=tx&chl= f(x)\frac{p(x)}{q(x)}" style="border:none;">  is a new target function. If we could sample a series of <img src="http://chart.googleapis.com/chart?cht=tx&chl= x^{(i)}" style="border:none;"> from the distribution <img src="http://chart.googleapis.com/chart?cht=tx&chl= q(x)" style="border:none;">. Then the original integral could be approximated by the following sum:<br>$$ E[f(x)] = \frac{1}{N}\sum</em>{i}{f(x^{(i)})\frac{p(x^{(i)})}{q(x^{(i)})}} $$</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -120,7 +117,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2017/12/25/Overview-of-MCMC-Methods/" data-title="Overview of MCMC Methods | What&#39;s life without whimsy?" data-tsina="1664838973  Your weibo ID,It will be used in share button." class="share clearfix">
+  <div data-url="http://yoursite.com/2017/12/12/Overview-of-MCMC-Methods/" data-title="Overview of MCMC Methods | What&#39;s life without whimsy?" data-tsina="1664838973  Your weibo ID,It will be used in share button." class="share clearfix">
   </div>
 
 </div>
@@ -142,22 +139,22 @@
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
   <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-We-Need-MCMC-Methods"><span class="toc-number">1.</span> <span class="toc-text">Why We Need MCMC Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sampling-Methods"><span class="toc-number">2.</span> <span class="toc-text">Sampling Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Simplest-Sampling-Methods-Inverse-of-CDF"><span class="toc-number">2.1.</span> <span class="toc-text">Simplest Sampling Methods: Inverse of CDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rejection-Sampling"><span class="toc-number">2.2.</span> <span class="toc-text">Rejection Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Importance-Sampling"><span class="toc-number">2.3.</span> <span class="toc-text">Importance Sampling</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tags/Bayesian-Modeling-and-Inference/" title="Bayesian Modeling and Inference">Bayesian Modeling and Inference<sup>1</sup></a></li>
@@ -167,7 +164,7 @@
 
 
   <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS 订阅</a>
+	<a href="" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
@@ -312,7 +309,24 @@ $(document).ready(function(){
     });
   });
 });     
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
