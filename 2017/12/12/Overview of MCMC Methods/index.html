@@ -41,7 +41,7 @@
 				<h1 class="site-name"><a href="/" title="What&#39;s life without whimsy?">What&#39;s life without whimsy?</a></h1>
 				<h2 class="blog-motto">Homepage of Yuanhanqing Huang</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -60,7 +60,7 @@
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -76,15 +76,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/12/12/Overview-of-MCMC-Methods/" title="Overview of MCMC Methods" itemprop="url">Overview of MCMC Methods</a>
+      <a href="/2017/12/12/Overview of MCMC Methods/" title="Overview of MCMC Methods" itemprop="url">Overview of MCMC Methods</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Yuanhanqing Huang">Yuanhanqing Huang</a>
     </p>
   <p class="article-time">
-    <time datetime="2017-12-12T05:52:45.000Z" itemprop="datePublished">2017-12-12</time>
-    更新日期:<time datetime="2018-01-03T06:50:58.740Z" itemprop="dateModified">2018-01-03</time>
+    <time datetime="2017-12-12T02:00:00.000Z" itemprop="datePublished">2017-12-12</time>
+    Updated:<time datetime="2018-01-04T07:22:03.764Z" itemprop="dateModified">2018-01-04</time>
     
   </p>
 </header>
@@ -92,8 +92,8 @@
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-We-Need-MCMC-Methods"><span class="toc-number">1.</span> <span class="toc-text">Why We Need MCMC Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sampling-Methods"><span class="toc-number">2.</span> <span class="toc-text">Sampling Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Simplest-Sampling-Methods-Inverse-of-CDF"><span class="toc-number">2.1.</span> <span class="toc-text">Simplest Sampling Methods: Inverse of CDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rejection-Sampling"><span class="toc-number">2.2.</span> <span class="toc-text">Rejection Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Importance-Sampling"><span class="toc-number">2.3.</span> <span class="toc-text">Importance Sampling</span></a></li></ol></li></ol>
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-We-Need-MCMC-Methods"><span class="toc-number">1.</span> <span class="toc-text">Why We Need MCMC Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sampling-Methods"><span class="toc-number">2.</span> <span class="toc-text">Sampling Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Simplest-Sampling-Methods-Inverse-of-CDF"><span class="toc-number">2.1.</span> <span class="toc-text">Simplest Sampling Methods: Inverse of CDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rejection-Sampling"><span class="toc-number">2.2.</span> <span class="toc-text">Rejection Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Importance-Sampling"><span class="toc-number">2.3.</span> <span class="toc-text">Importance Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metapolis-Hastings-Algorithm"><span class="toc-number">2.4.</span> <span class="toc-text">Metapolis-Hastings Algorithm</span></a></li></ol></li></ol>
 		</div>
 		
 		<h1 id="Why-We-Need-MCMC-Methods"><a href="#Why-We-Need-MCMC-Methods" class="headerlink" title="Why We Need MCMC Methods"></a>Why We Need MCMC Methods</h1><p>Under the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could firstly have a glimpse of the Bayesian equation: </p>
@@ -102,10 +102,19 @@
 <script type="math/tex; mode=display">\hat{E}_{\theta} =\frac{1}{n} \sum_{i=1}^{n}{\theta^{(i)}}</script><h1 id="Sampling-Methods"><a href="#Sampling-Methods" class="headerlink" title="Sampling Methods"></a>Sampling Methods</h1><h2 id="Simplest-Sampling-Methods-Inverse-of-CDF"><a href="#Simplest-Sampling-Methods-Inverse-of-CDF" class="headerlink" title="Simplest Sampling Methods: Inverse of CDF"></a>Simplest Sampling Methods: Inverse of CDF</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">u ~ U(0, 1)</div><div class="line">x = CDF_inverse(u)</div></pre></td></tr></table></figure>
 <p>This sampling method is the one we see most in our undergraduate Probability class. There is a problem haunting it: all too often, it is difficult or even impossible to write out the function of CDF_inverse. This problem compels us to find a more feasible way to execute sampling.</p>
 <h2 id="Rejection-Sampling"><a href="#Rejection-Sampling" class="headerlink" title="Rejection Sampling"></a>Rejection Sampling</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">while not enough samples:</div><div class="line">    x_i ~ q(x)</div><div class="line">    u ~ U(0, 1)</div><div class="line">    if u &lt; p(x_i)/(M * q(x_i)) then</div><div class="line">        accept x_i</div><div class="line">    else </div><div class="line">        reject x_i</div><div class="line">    end if</div><div class="line">end while</div></pre></td></tr></table></figure>
-<p><img src="reject_sampling.png" alt=""><br>Rejection sampling does not require knowing the function of inverse of CDF. Instead, it use a sampling function q(x), which often has a comparatively simpler form. The influence of original posterior distribution p(x) is demonstrated in the accaption-rejection judgement. When the value of fraction p(x)/Mq(x) is big, it is easier to accept this samples. However, the major problem of this method is that the frequency of rejection is much higher than that of accpetance, especially when x is of high dimension. In this case, rejection sampling is not efficient, and its adaptation is needed.<br>There exists adaptive rejection sampling, where adaptation has been done with respect to the sampling function q(x). By making q(x) approximates p(x) as close as possible, the acception rate could be improved dramatically. The illustration for this adaptation is following:<br><img src="adaptive_rejection.png" alt=""><br>Note that in order to make sure that every tagent has value larger than p(x), p(x) or its transformation must be concave.  </p>
+<img src="/2017/12/12/Overview%20of%20MCMC%20Methods/reject_sampling.png" alt="reject_sampling.png" title="">
+<p>Rejection sampling does not require knowing the function of inverse of CDF. Instead, it use a sampling function q(x), which often has a comparatively simpler form. The influence of original posterior distribution p(x) is demonstrated in the accaption-rejection judgement. When the value of fraction p(x)/Mq(x) is big, it is easier to accept this samples. However, the major problem of this method is that the frequency of rejection is much higher than that of accpetance, especially when x is of high dimension. In this case, rejection sampling is not efficient, and its adaptation is needed.<br>There exists adaptive rejection sampling, where adaptation has been done with respect to the sampling function q(x). By making q(x) approximates p(x) as close as possible, the acception rate could be improved dramatically. The illustration for this adaptation is following:<br><img src="/2017/12/12/Overview%20of%20MCMC%20Methods/adaptive_rejection.png" alt="adaptive_rejection.png" title=""><br>Note that in order to make sure that every tagent has value larger than p(x), p(x) or its transformation must be concave.  </p>
 <h2 id="Importance-Sampling"><a href="#Importance-Sampling" class="headerlink" title="Importance Sampling"></a>Importance Sampling</h2><p>In importance sampling, we introduce q(x) which is comparatively easier to sample than p(x) as that in rejection sampling. Yet q(x) here has different usage. We could transform the original expectation equation into the following form:</p>
 <script type="math/tex; mode=display">E[f(x)] = \int_{x}{[f(x)\frac{p(x)}{q(x)}]q(x)dx}</script><p>$q(x)$ is a new distribution function, and $f(x)\frac{p(x)}{q(x)}$  is a new target function. If we could sample a series of $x^{(i)}$ from the distribution $q(x)$. Then the original integral could be approximated by the following sum: </p>
-<script type="math/tex; mode=display">E[f(x)] = \frac{1}{N}\sum_{i}{f(x^{(i)})\frac{p(x^{(i)})}{q(x^{(i)})}}</script>  
+<script type="math/tex; mode=display">E[f(x)] = \frac{1}{N}\sum_{i}{f(x^{(i)})\frac{p(x^{(i)})}{q(x^{(i)})}}</script><p>There comes a question: why is this method named “Importance Sampling”?</p>
+<p>That’s because the second part of the expression of $ E[f(x)] $, $p(x^{i})/q(x^{i})$ could be regarded as the weight of $ x^{i} $. Suppose for certain $ x^{a} $, $p(x^{a})$ is big yet the sampling function $q(x^{i})$ is small. It means that under original distribution $p(x)$, $ x^{a} $ is a point that has high probability to be visited. However, under current distribution $q(x)$, $ x^{a} $ has a comparatively lower visiting probability. In order to compensate this, we assign $ x^{a} $ with a higher weight,  $p(x^{i})/q(x^{i})$. Although less likely to be sampled, once added to the sampling sets, this point will contribute greatly to the overall expectation of $f(x)$.</p>
+<h2 id="Metapolis-Hastings-Algorithm"><a href="#Metapolis-Hastings-Algorithm" class="headerlink" title="Metapolis-Hastings Algorithm"></a>Metapolis-Hastings Algorithm</h2><p>To understand MH sampling, first we should have a glimpse about detailed balance. From the definition of WiKiPedia, the principle of detailed balance is formulated for kinetic systems which are decomposed into elementary processes (collisions, or steps, or elementary reactions): <strong>at equilibrium, each elementary process should be equilibrated by its reverse process</strong>.</p>
+<p>From mathematical perspective, we have</p>
+<script type="math/tex; mode=display">p(y) = \int_{x}p(y|x)P(x)dx</script><p>And we further could write it in the following form:</p>
+<script type="math/tex; mode=display">/pi_{t}(x^*) = \int_{x}\pi_{t-1}K(x -> x^*)dx</script><p>$/pi_{t}(x^<em>)$ refers to the probability to be in the state $x^</em>$ or $p(y)$ in the former equation, and $K(x -&gt; x^<em>)$ denotes the probability to transfer from state $x$ to state $x^</em>$ or $p(y|x)$ in the former equation. We could prove that, if detailed balance is satisfied, the equation (?) holds. </p>
+<script type="math/tex; mode=display">\pi(x)k(x^*|x) = \pi(x^*)k(x|x^*)</script><p>Then, we get</p>
+<script type="math/tex; mode=display">\int\pi(x)k(x^*|x)dx = \int\pi(x^*)k(x|x^*)dx = \pi(x^*)\intk(x|x^*)dx = \pi(x^*)</script><p>The following is the pseudo-code for MH sampling.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Initialize $x^0$</div><div class="line">For i = 0 to N-1:</div><div class="line">	$ u ~ U(0, 1) $</div><div class="line">	$ x^* ~ q(x^*|x^&#123;(i)&#125;) $</div><div class="line">	if $ u &lt; /alpha(x^*) = min(1, \frac&#123;t\pi(x^*)q(x|x^*)&#125;&#123;\pi(x)q(x^*|x)&#125;)$:</div><div class="line">		$ x^&#123;(i+1)&#125; = x^* $</div><div class="line">	else:</div><div class="line">		$ x^&#123;(i+1)&#125; = x^&#123;(i)&#125; $</div></pre></td></tr></table></figure></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -119,7 +128,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2017/12/12/Overview-of-MCMC-Methods/" data-title="Overview of MCMC Methods | What&#39;s life without whimsy?" data-tsina="1664838973  Your weibo ID,It will be used in share button." class="share clearfix">
+  <div data-url="http://yoursite.com/2017/12/12/Overview of MCMC Methods/" data-title="Overview of MCMC Methods | What&#39;s life without whimsy?" data-tsina="1664838973  Your weibo ID,It will be used in share button." class="share clearfix">
   </div>
 
 </div>
@@ -128,45 +137,45 @@
 	
 <nav class="article-nav clearfix">
  
-
-<div class="next">
-<a href="/2017/09/10/hello-world/"  title="Hello World">
- <strong>NEXT:</strong><br/> 
- <span>Hello World
-</span>
+ <div class="prev" >
+ <a href="/2018/01/04/Variational Inference/" title="Variational Inference">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Variational Inference</span>
 </a>
 </div>
+
 
 </nav>
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-We-Need-MCMC-Methods"><span class="toc-number">1.</span> <span class="toc-text">Why We Need MCMC Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sampling-Methods"><span class="toc-number">2.</span> <span class="toc-text">Sampling Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Simplest-Sampling-Methods-Inverse-of-CDF"><span class="toc-number">2.1.</span> <span class="toc-text">Simplest Sampling Methods: Inverse of CDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rejection-Sampling"><span class="toc-number">2.2.</span> <span class="toc-text">Rejection Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Importance-Sampling"><span class="toc-number">2.3.</span> <span class="toc-text">Importance Sampling</span></a></li></ol></li></ol>
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-We-Need-MCMC-Methods"><span class="toc-number">1.</span> <span class="toc-text">Why We Need MCMC Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sampling-Methods"><span class="toc-number">2.</span> <span class="toc-text">Sampling Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Simplest-Sampling-Methods-Inverse-of-CDF"><span class="toc-number">2.1.</span> <span class="toc-text">Simplest Sampling Methods: Inverse of CDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rejection-Sampling"><span class="toc-number">2.2.</span> <span class="toc-text">Rejection Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Importance-Sampling"><span class="toc-number">2.3.</span> <span class="toc-text">Importance Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metapolis-Hastings-Algorithm"><span class="toc-number">2.4.</span> <span class="toc-text">Metapolis-Hastings Algorithm</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/Bayesian-Modeling-and-Inference/" title="Bayesian Modeling and Inference">Bayesian Modeling and Inference<sup>1</sup></a></li>
+			<li><a href="/tags/Bayesian-Modeling-and-Inference/" title="Bayesian Modeling and Inference">Bayesian Modeling and Inference<sup>2</sup></a></li>
 		
 		</ul>
 </div>
 
 
   <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
