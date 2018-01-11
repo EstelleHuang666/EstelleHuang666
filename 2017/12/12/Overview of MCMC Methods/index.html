@@ -41,7 +41,7 @@
 				<h1 class="site-name"><a href="/" title="What&#39;s life without whimsy?">What&#39;s life without whimsy?</a></h1>
 				<h2 class="blog-motto">Homepage of Yuanhanqing Huang</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -60,7 +60,7 @@
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -84,7 +84,7 @@
     </p>
   <p class="article-time">
     <time datetime="2017-12-12T02:00:00.000Z" itemprop="datePublished">2017-12-12</time>
-    Updated:<time datetime="2018-01-08T05:40:57.064Z" itemprop="dateModified">2018-01-08</time>
+    更新日期:<time datetime="2018-01-11T05:22:43.154Z" itemprop="dateModified">2018-01-11</time>
     
   </p>
 </header>
@@ -92,7 +92,7 @@
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-We-Need-MCMC-Methods"><span class="toc-number">1.</span> <span class="toc-text">Why We Need MCMC Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sampling-Methods"><span class="toc-number">2.</span> <span class="toc-text">Sampling Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Simplest-Sampling-Methods-Inverse-of-CDF"><span class="toc-number">2.1.</span> <span class="toc-text">Simplest Sampling Methods: Inverse of CDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rejection-Sampling"><span class="toc-number">2.2.</span> <span class="toc-text">Rejection Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Importance-Sampling"><span class="toc-number">2.3.</span> <span class="toc-text">Importance Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metapolis-Hastings-Algorithm"><span class="toc-number">2.4.</span> <span class="toc-text">Metapolis-Hastings Algorithm</span></a></li></ol></li></ol>
 		</div>
 		
@@ -110,11 +110,13 @@
 <p>That’s because the second part of the expression of $ E[f(x)] $, $p(x^{i})/q(x^{i})$ could be regarded as the weight of $ x^{i} $. Suppose for certain $ x^{a} $, $p(x^{a})$ is big yet the sampling function $q(x^{i})$ is small. It means that under original distribution $p(x)$, $ x^{a} $ is a point that has high probability to be visited. However, under current distribution $q(x)$, $ x^{a} $ has a comparatively lower visiting probability. In order to compensate this, we assign $ x^{a} $ with a higher weight,  $p(x^{i})/q(x^{i})$. Although less likely to be sampled, once added to the sampling sets, this point will contribute greatly to the overall expectation of $f(x)$.</p>
 <h2 id="Metapolis-Hastings-Algorithm"><a href="#Metapolis-Hastings-Algorithm" class="headerlink" title="Metapolis-Hastings Algorithm"></a>Metapolis-Hastings Algorithm</h2><p>To understand MH sampling, first we should have a glimpse about detailed balance. From the definition of WiKiPedia, the principle of detailed balance is formulated for kinetic systems which are decomposed into elementary processes (collisions, or steps, or elementary reactions): <strong>at equilibrium, each elementary process should be equilibrated by its reverse process</strong>.</p>
 <p>From mathematical perspective, we have</p>
-<script type="math/tex; mode=display">p(y) = \int_{x}p(y|x)P(x)dx</script><p>And we further could write it in the following form:</p>
-<script type="math/tex; mode=display">/pi_{t}(x^*) = \int_{x}\pi_{t-1}K(x -> x^*)dx</script><p>$/pi_{t}(x^<em>)$ refers to the probability to be in the state $x^</em>$ or $p(y)$ in the former equation, and $K(x -&gt; x^<em>)$ denotes the probability to transfer from state $x$ to state $x^</em>$ or $p(y|x)$ in the former equation. We could prove that, if detailed balance is satisfied, the equation (?) holds. </p>
-<script type="math/tex; mode=display">\pi(x)k(x^*|x) = \pi(x^*)k(x|x^*)</script><p>Then, we get</p>
-<script type="math/tex; mode=display">\int\pi(x)k(x^*|x)dx = \int\pi(x^*)k(x|x^*)dx = \pi(x^*)\intk(x|x^*)dx = \pi(x^*)</script><p>The following is the pseudo-code for MH sampling.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Initialize x_0</div><div class="line">For i = 0 to N-1:</div><div class="line">	u ~ U(0, 1)</div><div class="line">	x* ~ q(x*|x_i)</div><div class="line">	if u &lt; alpha(x*) = min(1, (pi(x*)q(x|x*))/(pi(x)q(x*|x)):</div><div class="line">		x_(i+1) = x* </div><div class="line">	else:</div><div class="line">		x_(i+1) = x_i</div></pre></td></tr></table></figure></p>
-  
+<script type="math/tex; mode=display">p(y) = \int_{x}p(y|x)p(x)dx</script><p>And we further could write it in the following form:</p>
+<script type="math/tex; mode=display">\pi_{t}(x^{*}) = \int_{x}\pi_{t-1}K(x \to x^{*})dx</script><p>$ \pi_{t}(x^{*}) $ refers to the probability to be in the state $x^{*}$ or $p(y)$ in the former equation, and $K(x \to x^{*})$ denotes the probability to transfer from state $x$ to state $x^{*}$ or $p(y|x)$ in the former equation. We could prove that, if detailed balance is satisfied, the equation $ \pi_{t}(x^{*}) = \int_{x}\pi_{t-1}K(x \to x^{*})dx $ holds. </p>
+<script type="math/tex; mode=display">\pi(x)K(x^{*}|x) = \pi(x^{*})K(x|x^{*})</script><p>Then, we get</p>
+<script type="math/tex; mode=display">\int\pi(x)K(x^{*}|x)dx = \int\pi(x^{*})K(x|x^{*})dx = \pi(x^{*})\int K(x|x^{*})dx = \pi(x^{*})</script><p>The following is the pseudo-code for MH sampling.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Initialize x_0</div><div class="line">For i = 0 to N-1:</div><div class="line">	u ~ U(0, 1)</div><div class="line">	x* ~ q(x*|x_i)</div><div class="line">	if u &lt; alpha(x*) = min(1, (pi(x*)q(x|x*))/(pi(x)q(x*|x)):</div><div class="line">		x_(i+1) = x* </div><div class="line">	else:</div><div class="line">		x_(i+1) = x_i</div></pre></td></tr></table></figure></p>
+<p>In order to prove that MH sampling satisfies detailed balance, we need to prove $ \pi(x)K(x^{*} \to x) = \pi(x^{*})K(x \to x^*) $ </p>
+<script type="math/tex; mode=display">K(x \to x^*) = q(x^* | x) min(1, \frac{\pi (x^*) \cdot q(x^* \to x)}{\pi (x) \cdot q(x \to x^*)})</script><script type="math/tex; mode=display">\pi(x)K(x^* \to x) = min(\pi (x)q(x^{*}|x), \pi (x^{*}) q(x|x^{*})) 
+= \pi(x^{*})K(x \to x^*) min(\frac{\pi (x) \cdot q(x \to x^*)}{\pi (x^*) \cdot q(x^* \to x)}, 1)</script>  
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -150,22 +152,22 @@
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
   <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-We-Need-MCMC-Methods"><span class="toc-number">1.</span> <span class="toc-text">Why We Need MCMC Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sampling-Methods"><span class="toc-number">2.</span> <span class="toc-text">Sampling Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Simplest-Sampling-Methods-Inverse-of-CDF"><span class="toc-number">2.1.</span> <span class="toc-text">Simplest Sampling Methods: Inverse of CDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rejection-Sampling"><span class="toc-number">2.2.</span> <span class="toc-text">Rejection Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Importance-Sampling"><span class="toc-number">2.3.</span> <span class="toc-text">Importance Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metapolis-Hastings-Algorithm"><span class="toc-number">2.4.</span> <span class="toc-text">Metapolis-Hastings Algorithm</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tags/Bayesian-Modeling-and-Inference/" title="Bayesian Modeling and Inference">Bayesian Modeling and Inference<sup>2</sup></a></li>
@@ -175,7 +177,7 @@
 
 
   <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS</a>
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>
