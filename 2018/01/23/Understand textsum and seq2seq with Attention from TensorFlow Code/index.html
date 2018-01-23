@@ -3,15 +3,19 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Understand-textsum-and-seq2seq-with-Attention-from-TensorFlow-Code | What&#39;s life without whimsy?</title>
+  <title>Understand textsum and seq2seq with Attention from TensorFlow Code | What&#39;s life without whimsy?</title>
   <meta name="viewport" content="width=device-width">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Understand-textsum-and-seq2seq-with-Attention-from-TensorFlow-Code">
+  <meta name="description" content="This article will peel textsum algorithm and seq2seq with attention mechanism based on the project on TensorFlow/models into very little detail. (tensorflow/models/research/textsum)  Transfer Text int">
+<meta name="keywords" content="Neural Network, TensorFlow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understand textsum and seq2seq with Attention from TensorFlow Code">
 <meta property="og:url" content="http://yoursite.com/2018/01/23/Understand textsum and seq2seq with Attention from TensorFlow Code/index.html">
 <meta property="og:site_name" content="What&#39;s life without whimsy?">
-<meta property="og:updated_time" content="2018-01-23T13:40:21.382Z">
+<meta property="og:description" content="This article will peel textsum algorithm and seq2seq with attention mechanism based on the project on TensorFlow/models into very little detail. (tensorflow/models/research/textsum)  Transfer Text int">
+<meta property="og:updated_time" content="2018-01-23T14:55:32.739Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Understand-textsum-and-seq2seq-with-Attention-from-TensorFlow-Code">
+<meta name="twitter:title" content="Understand textsum and seq2seq with Attention from TensorFlow Code">
+<meta name="twitter:description" content="This article will peel textsum algorithm and seq2seq with attention mechanism based on the project on TensorFlow/models into very little detail. (tensorflow/models/research/textsum)  Transfer Text int">
   
     <link rel="alternative" href="/atom.xml" title="What&#39;s life without whimsy?" type="application/atom+xml">
   
@@ -60,14 +64,20 @@
 		
   
     <h1 class="article-title entry-title" itemprop="name">
-      Understand-textsum-and-seq2seq-with-Attention-from-TensorFlow-Code
+      Understand textsum and seq2seq with Attention from TensorFlow Code
     </h1>
   
 
 	</header>
 	<div class="entry-content">
 		
-    	
+    	<p>This article will peel textsum algorithm and seq2seq with attention mechanism based on the project on TensorFlow/models into very little detail. (<a href="https://github.com/tensorflow/models/tree/master/research/textsum" target="_blank" rel="external">tensorflow/models/research/textsum</a>) </p>
+<h2 id="Transfer-Text-into-bin-Type"><a href="#Transfer-Text-into-bin-Type" class="headerlink" title="Transfer Text into .bin Type"></a>Transfer Text into .bin Type</h2><p>This part is written in textsum_data_convert.py. The inputs are text file, encoded in utf-8. It has two functions.</p>
+<ol>
+<li>It outputs .bin file which transform the original unstructured text file into structured .bin file. </li>
+<li>It outputs vocab file which counts frequncy of certain word in text files and stores the word as well as its frequency.<br>As for the first function, we have: </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">def _convert_files_to_binary(input_filenames, output_filename):</div><div class="line">  with open(output_filename, &apos;wb&apos;) as writer:</div><div class="line">    for filename in input_filenames:</div><div class="line">      with open(filename, &apos;r&apos;) as f:</div><div class="line">        document = f.read()</div><div class="line">    </div><div class="line">      document_parts = document.split(&apos;\n&apos;, 1)</div><div class="line">      assert len(document_parts) == 2</div><div class="line">    </div><div class="line">      title = &apos;&lt;d&gt;&lt;p&gt;&lt;s&gt;&apos; + document_parts[0] + &apos;&lt;/s&gt;&lt;/p&gt;&lt;/d&gt;&apos;</div><div class="line">      # encode the title into the form of (&apos;UTF-8&apos;), otherwise in tf_example.features.feature[].bytes_list.value.extend()</div><div class="line">      # will report an error.</div><div class="line">      title = title.encode(&apos;utf8&apos;)</div><div class="line">      </div><div class="line">      # body = document_parts[1].decode(&apos;utf8&apos;).replace(&apos;\n&apos;, &apos; &apos;).replace(&apos;\t&apos;, &apos; &apos;)</div><div class="line">      # AttributeError: &apos;str&apos; object has no attribute &apos;decode&apos; -&gt; by Murphy 02.Jan.18</div><div class="line">      try:</div><div class="line">        body = document_parts[1].decode(&apos;utf8&apos;).replace(&apos;\n&apos;, &apos; &apos;).replace(&apos;\t&apos;, &apos; &apos;)</div><div class="line">      except:</div><div class="line">        body = document_parts[1].replace(&apos;\n&apos;, &apos; &apos;).replace(&apos;\t&apos;, &apos; &apos;)</div><div class="line">      sentences = sent_tokenize(body)</div><div class="line">      body = &apos;&lt;d&gt;&lt;p&gt;&apos; + &apos; &apos;.join([&apos;&lt;s&gt;&apos; + sentence + &apos;&lt;/s&gt;&apos; for sentence in sentences]) + &apos;&lt;/p&gt;&lt;/d&gt;&apos;</div><div class="line">      body = body.encode(&apos;utf8&apos;)</div><div class="line">    </div><div class="line">      tf_example = example_pb2.Example()</div><div class="line">      tf_example.features.feature[&apos;article&apos;].bytes_list.value.extend([body])</div><div class="line">      tf_example.features.feature[&apos;abstract&apos;].bytes_list.value.extend([title])</div><div class="line">      tf_example_str = tf_example.SerializeToString()</div><div class="line">      str_len = len(tf_example_str)</div><div class="line">      writer.write(struct.pack(&apos;q&apos;, str_len))</div><div class="line">      writer.write(struct.pack(&apos;%ds&apos; % str_len, tf_example_str))</div></pre></td></tr></table></figure>
     
 	</div>
 	<footer class="entry-footer">
@@ -77,6 +87,8 @@
 			</span>
 			<span class="tags">
 				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Neural-Network-TensorFlow/">Neural Network, TensorFlow</a></li></ul>
+
 			</span>
 		</div>
 	</footer>
