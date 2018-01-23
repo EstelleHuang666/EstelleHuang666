@@ -1,102 +1,81 @@
-
- <!DOCTYPE HTML>
-<html >
+<!DOCTYPE html>
+<html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-    <title>Overview of MCMC Methods | What&#39;s life without whimsy?</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
-    
-    <meta name="author" content="Yuanhanqing Huang">
-    
-    <meta name="description" content="Why We Need MCMC MethodsUnder the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understan">
-    
-    
-    
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="yangjiansky for https://twitter.com/yangjiansky" />
-    <meta name="twitter:title" content="Overview of MCMC Methods | What&#39;s life without whimsy?" />
-      
-    
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Overview of MCMC Methods (I) | What&#39;s life without whimsy?</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="S Why We Need MCMC MethodsUnder the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could firstly have a glimp">
+<meta name="keywords" content="Bayesian Modeling and Inference">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Overview of MCMC Methods (I)">
+<meta property="og:url" content="http://yoursite.com/2017/12/12/Overview of MCMC Methods/index.html">
+<meta property="og:site_name" content="What&#39;s life without whimsy?">
+<meta property="og:description" content="S Why We Need MCMC MethodsUnder the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could firstly have a glimp">
+<meta property="og:image" content="http://yoursite.com/2017/12/12/Overview%20of%20MCMC%20Methods/reject_sampling.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/12/Overview%20of%20MCMC%20Methods/adaptive_rejection.png">
+<meta property="og:updated_time" content="2018-01-21T15:26:26.170Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Overview of MCMC Methods (I)">
+<meta name="twitter:description" content="S Why We Need MCMC MethodsUnder the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could firstly have a glimp">
+<meta name="twitter:image" content="http://yoursite.com/2017/12/12/Overview%20of%20MCMC%20Methods/reject_sampling.png">
+  
+    <link rel="alternative" href="/atom.xml" title="What&#39;s life without whimsy?" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/2017-03-04_14-26-51.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
 </head>
-
-  <body>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
-      <div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="What&#39;s life without whimsy?" title="What&#39;s life without whimsy?"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="What&#39;s life without whimsy?">What&#39;s life without whimsy?</a></h1>
-				<h2 class="blog-motto">Homepage of Yuanhanqing Huang</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/resume">About Me</a></li>
-					
-						<li><a href="/">Research</a></li>
-					
-						<li><a href="/">Blog</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-					<li>
-					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:yoursite.com">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
 </div>
-
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/12/12/Overview of MCMC Methods/" title="Overview of MCMC Methods" itemprop="url">Overview of MCMC Methods</a>
-  </h1>
-  <p class="article-author">By
-    
-      <a href="http://yoursite.com" title="Yuanhanqing Huang">Yuanhanqing Huang</a>
-    </p>
-  <p class="article-time">
-    <time datetime="2017-12-12T02:00:00.000Z" itemprop="datePublished">2017-12-12</time>
-    更新日期:<time datetime="2018-01-11T05:22:43.154Z" itemprop="dateModified">2018-01-11</time>
-    
-  </p>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">What&#39;s life without whimsy?</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/">Home</a></li><li><a href="/resume">About Me</a></li><li><a href="/archives">Archives</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+	</div>
 </header>
-	<div class="article-content">
-		
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-We-Need-MCMC-Methods"><span class="toc-number">1.</span> <span class="toc-text">Why We Need MCMC Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sampling-Methods"><span class="toc-number">2.</span> <span class="toc-text">Sampling Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Simplest-Sampling-Methods-Inverse-of-CDF"><span class="toc-number">2.1.</span> <span class="toc-text">Simplest Sampling Methods: Inverse of CDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rejection-Sampling"><span class="toc-number">2.2.</span> <span class="toc-text">Rejection Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Importance-Sampling"><span class="toc-number">2.3.</span> <span class="toc-text">Importance Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metapolis-Hastings-Algorithm"><span class="toc-number">2.4.</span> <span class="toc-text">Metapolis-Hastings Algorithm</span></a></li></ol></li></ol>
+    <div id="main">
+      <article id="post-Overview of MCMC Methods" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/12/12/Overview of MCMC Methods/" class="article-date">
+  <time datetime="2017-12-12T02:00:00.000Z" itemprop="datePublished">2017-12-12</time>
+</a>
+		</span>
+		<span class="meta-elements author">Yuanhanqing Huang</span>
+		<div class="commentscount">
+			
 		</div>
+	</footer>
+	
+	<header class="entry-header">
 		
-		<h1 id="Why-We-Need-MCMC-Methods"><a href="#Why-We-Need-MCMC-Methods" class="headerlink" title="Why We Need MCMC Methods"></a>Why We Need MCMC Methods</h1><p>Under the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could firstly have a glimpse of the Bayesian equation: </p>
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Overview of MCMC Methods (I)
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>S</p>
+<h1 id="Why-We-Need-MCMC-Methods"><a href="#Why-We-Need-MCMC-Methods" class="headerlink" title="Why We Need MCMC Methods"></a>Why We Need MCMC Methods</h1><p>Under the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could firstly have a glimpse of the Bayesian equation: </p>
 <script type="math/tex; mode=display">P(y_{i}|x)=\frac{P(x|y_{i})P(y_{i})}{\sum{P(x|y)P(y)}}</script><p>It is always difficult to calculate the denominator, since it is always impossible to enumerate all of the possible $y$ and corresponding $x$ from my understanding. And that’s also why Geoffrey Hinton put forward Convergence Divergence to train Boltzmann Machine. Therefore we needs methods to help us approximate the posterior. Currently there are two methods, one is variational inference, the other is Monte Carlo Markov Chain sampling methods, which is the topic for this article.<br>Under ordinary inference problem setting, when we need to figure out certain parameters, we should calculate them in the following way:  </p>
 <script type="math/tex; mode=display">\theta = \int_{\theta}{\theta P(\theta|x)d\theta}</script><p>In MCMC, after sampling adequate number of samples from the posterior distribution, we could approximate the original equation in the following way:  </p>
 <script type="math/tex; mode=display">\hat{E}_{\theta} =\frac{1}{n} \sum_{i=1}^{n}{\theta^{(i)}}</script><h1 id="Sampling-Methods"><a href="#Sampling-Methods" class="headerlink" title="Sampling Methods"></a>Sampling Methods</h1><h2 id="Simplest-Sampling-Methods-Inverse-of-CDF"><a href="#Simplest-Sampling-Methods-Inverse-of-CDF" class="headerlink" title="Simplest Sampling Methods: Inverse of CDF"></a>Simplest Sampling Methods: Inverse of CDF</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">u ~ U(0, 1)</div><div class="line">x = CDF_inverse(u)</div></pre></td></tr></table></figure>
@@ -116,213 +95,71 @@
 <script type="math/tex; mode=display">\int\pi(x)K(x^{*}|x)dx = \int\pi(x^{*})K(x|x^{*})dx = \pi(x^{*})\int K(x|x^{*})dx = \pi(x^{*})</script><p>The following is the pseudo-code for MH sampling.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Initialize x_0</div><div class="line">For i = 0 to N-1:</div><div class="line">	u ~ U(0, 1)</div><div class="line">	x* ~ q(x*|x_i)</div><div class="line">	if u &lt; alpha(x*) = min(1, (pi(x*)q(x|x*))/(pi(x)q(x*|x)):</div><div class="line">		x_(i+1) = x* </div><div class="line">	else:</div><div class="line">		x_(i+1) = x_i</div></pre></td></tr></table></figure></p>
 <p>In order to prove that MH sampling satisfies detailed balance, we need to prove $ \pi(x)K(x^{*} \to x) = \pi(x^{*})K(x \to x^*) $ </p>
 <script type="math/tex; mode=display">K(x \to x^*) = q(x^* | x) min(1, \frac{\pi (x^*) \cdot q(x^* \to x)}{\pi (x) \cdot q(x \to x^*)})</script><script type="math/tex; mode=display">\pi(x)K(x^* \to x) = min(\pi (x)q(x^{*}|x), \pi (x^{*}) q(x|x^{*})) 
-= \pi(x^{*})K(x \to x^*) min(\frac{\pi (x) \cdot q(x \to x^*)}{\pi (x^*) \cdot q(x^* \to x)}, 1)</script>  
+= \pi(x^{*})K(x \to x^*) min(\frac{\pi (x) \cdot q(x \to x^*)}{\pi (x^*) \cdot q(x^* \to x)}, 1)</script>
+    
 	</div>
-		<footer class="article-footer clearfix">
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bayesian-Modeling-and-Inference/">Bayesian Modeling and Inference</a></li></ul>
 
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Bayesian-Modeling-and-Inference/">Bayesian Modeling and Inference</a>
-  </div>
-
-
-
-
-<div class="article-share" id="share">
-
-  <div data-url="http://yoursite.com/2017/12/12/Overview of MCMC Methods/" data-title="Overview of MCMC Methods | What&#39;s life without whimsy?" data-tsina="1664838973  Your weibo ID,It will be used in share button." class="share clearfix">
-  </div>
-
-</div>
-</footer>   	       
-	</article>
+			</span>
+		</div>
+	</footer>
 	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2018/01/04/Variational Inference/" title="Variational Inference">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Variational Inference</span>
-</a>
-</div>
-
-
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/04/Variational Inference/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Variational Inference
+        
+      </div>
+    </a>
+  
+  
 </nav>
 
-	
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-We-Need-MCMC-Methods"><span class="toc-number">1.</span> <span class="toc-text">Why We Need MCMC Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sampling-Methods"><span class="toc-number">2.</span> <span class="toc-text">Sampling Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Simplest-Sampling-Methods-Inverse-of-CDF"><span class="toc-number">2.1.</span> <span class="toc-text">Simplest Sampling Methods: Inverse of CDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rejection-Sampling"><span class="toc-number">2.2.</span> <span class="toc-text">Rejection Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Importance-Sampling"><span class="toc-number">2.3.</span> <span class="toc-text">Importance Sampling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metapolis-Hastings-Algorithm"><span class="toc-number">2.4.</span> <span class="toc-text">Metapolis-Hastings Algorithm</span></a></li></ol></li></ol>
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
   
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			<li><a href="/tags/Bayesian-Modeling-and-Inference/" title="Bayesian Modeling and Inference">Bayesian Modeling and Inference<sup>2</sup></a></li>
-		
-		</ul>
-</div>
+</article>
 
 
-  <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS 订阅</a>
-</div>
 
-</aside>
-</div>
+
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<div class="social-font clearfix">
-		
-		<a href="http://weibo.com/436062867 for http://weibo.com/436062867" target="_blank" title="weibo"></a>
-		
-		
-		<a href="https://twitter.com/yangjiansky for https://twitter.com/yangjiansky" target="_blank" title="twitter"></a>
-		
-		
-		<a href="https://github.com/EstelleHuang666" target="_blank" title="github"></a>
-		
-		
-		<a href="https://www.facebook.com/yangjian for https://favebook.com/yangjian" target="_blank" title="facebook"></a>
-		
-		
-        <a href="https://www.linkedin.com/e.g. in/jeffweiner08 for https://www.linkedin.com/in/jeffweiner08" target="_blank" title="linkedin"></a>
-        
-	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
-		
-		<a href="http://yoursite.com" target="_blank" title="Yuanhanqing Huang">Yuanhanqing Huang</a>
-		
-		</p>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
 </div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">What&#39;s life without whimsy?</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2018 Yuanhanqing Huang<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
 </footer>
-    <script src="/js/jquery-2.1.0.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else
-    {
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-});
-</script>
+    
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
-    });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
-});
-</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina');
-  var html = [
-  '<a href="#" class="overlay" id="qrcode"></a>',
-  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
-  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-  $('.article-share-qrcode').click(function(){
-    var imgSrc = $('#qrcode-pic').attr('data-src');
-    $('#qrcode-pic').attr('src', imgSrc);
-    $('#qrcode-pic').load(function(){
-        $('.qrcode strong').text(' ');
-    });
-  });
-});     
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]]}});
 </script>
@@ -340,11 +177,5 @@ $(document).ready(function(){
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-
-
-
-  </body>
+</body>
 </html>
