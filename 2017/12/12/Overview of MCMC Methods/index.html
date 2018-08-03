@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html class="full-height">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
   
   <title>Overview of MCMC Methods (I) | What&#39;s life without whimsy?</title>
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Why We Need MCMC MethodsUnder the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could firstly have a glimpse">
 <meta name="keywords" content="Bayesian Modeling and Inference">
 <meta property="og:type" content="article">
@@ -20,61 +23,132 @@
 <meta name="twitter:description" content="Why We Need MCMC MethodsUnder the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could firstly have a glimpse">
 <meta name="twitter:image" content="http://yoursite.com/2017/12/12/Overview%20of%20MCMC%20Methods/reject_sampling.png">
   
-    <link rel="alternative" href="/atom.xml" title="What&#39;s life without whimsy?" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="What&#39;s life without whimsy?" type="application/atom+xml">
   
   
-    <link rel="icon" href="/2017-03-04_14-26-51.jpg">
+    <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
-</head>
-<body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
-    <div class="mobile-nav-panel">
-	<i class="icon-reorder icon-large"></i>
-</div>
-<header id="header">
-	<h1 class="blog-title">
-		<a href="/">What&#39;s life without whimsy?</a>
-	</h1>
-	<nav class="nav">
-		<ul>
-			<li><a href="/">Home</a></li><li><a href="/resume">About Me</a></li><li><a href="/archives">Archives</a></li>
-			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
-			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
-		</ul>
-	</nav>
-	<div id="search-form-wrap">
-		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-	</div>
-</header>
-    <div id="main">
-      <article id="post-Overview of MCMC Methods" class="post">
-	<footer class="entry-meta-header">
-		<span class="meta-elements date">
-			<a href="/2017/12/12/Overview of MCMC Methods/" class="article-date">
-  <time datetime="2017-12-12T02:00:00.000Z" itemprop="datePublished">2017-12-12</time>
-</a>
-		</span>
-		<span class="meta-elements author">Yuanhanqing Huang</span>
-		<div class="commentscount">
-			
-		</div>
-	</footer>
-	
-	<header class="entry-header">
-		
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-    <h1 class="article-title entry-title" itemprop="name">
-      Overview of MCMC Methods (I)
-    </h1>
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
-	</header>
-	<div class="entry-content">
-		
-    	<h1 id="Why-We-Need-MCMC-Methods"><a href="#Why-We-Need-MCMC-Methods" class="headerlink" title="Why We Need MCMC Methods"></a>Why We Need MCMC Methods</h1><p>Under the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could firstly have a glimpse of the Bayesian equation: </p>
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Yuanhanqing Huang</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/Resume">
+                Resume
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/Resume">
+                Resume
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>Overview of MCMC Methods (I)</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="/img/personal_pic.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Yuanhanqing Huang</span>
+                <span class="post-date sub-title">at: 2017-12-12</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/Bayesian-Modeling-and-Inference/">Bayesian Modeling and Inference</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <h1 id="Why-We-Need-MCMC-Methods"><a href="#Why-We-Need-MCMC-Methods" class="headerlink" title="Why We Need MCMC Methods"></a>Why We Need MCMC Methods</h1><p>Under the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could firstly have a glimpse of the Bayesian equation: </p>
 <script type="math/tex; mode=display">P(y_{i}|x)=\frac{P(x|y_{i})P(y_{i})}{\sum{P(x|y)P(y)}}</script><p>It is always difficult to calculate the denominator, since it is always impossible to enumerate all of the possible $y$ and corresponding $x$ from my understanding. And that’s also why Geoffrey Hinton put forward Convergence Divergence to train Boltzmann Machine. Therefore we needs methods to help us approximate the posterior. Currently there are two methods, one is variational inference, the other is Monte Carlo Markov Chain sampling methods, which is the topic for this article.<br>Under ordinary inference problem setting, when we need to figure out certain parameters, we should calculate them in the following way:  </p>
 <script type="math/tex; mode=display">\theta = \int_{\theta}{\theta P(\theta|x)d\theta}</script><p>In MCMC, after sampling adequate number of samples from the posterior distribution, we could approximate the original equation in the following way:  </p>
 <script type="math/tex; mode=display">\hat{E}_{\theta} =\frac{1}{n} \sum_{i=1}^{n}{\theta^{(i)}}</script><h1 id="Sampling-Methods"><a href="#Sampling-Methods" class="headerlink" title="Sampling Methods"></a>Sampling Methods</h1><h2 id="Simplest-Sampling-Methods-Inverse-of-CDF"><a href="#Simplest-Sampling-Methods-Inverse-of-CDF" class="headerlink" title="Simplest Sampling Methods: Inverse of CDF"></a>Simplest Sampling Methods: Inverse of CDF</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">u ~ U(0, 1)</div><div class="line">x = CDF_inverse(u)</div></pre></td></tr></table></figure>
@@ -95,70 +169,71 @@
 <p>In order to prove that MH sampling satisfies detailed balance, we need to prove $ \pi(x)K(x^{*} \to x) = \pi(x^{*})K(x \to x^*) $ </p>
 <script type="math/tex; mode=display">K(x \to x^*) = q(x^* | x) min(1, \frac{\pi (x^*) \cdot q(x^* \to x)}{\pi (x) \cdot q(x \to x^*)})</script><script type="math/tex; mode=display">\pi(x)K(x^* \to x) = min(\pi (x)q(x^{*}|x), \pi (x^{*}) q(x|x^{*})) 
 = \pi(x^{*})K(x \to x^*) min(\frac{\pi (x) \cdot q(x \to x^*)}{\pi (x^*) \cdot q(x^* \to x)}, 1)</script>
-    
-	</div>
-	<footer class="entry-footer">
-		<div class="entry-meta-footer">
-			<span class="category">
-				
-			</span>
-			<span class="tags">
-				
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bayesian-Modeling-and-Inference/">Bayesian Modeling and Inference</a></li></ul>
+        </div>
+        <div class="post-reply">
+            
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE4Ni81NzUz">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
 
-			</span>
-		</div>
-	</footer>
-	
-    
-<nav id="article-nav">
-  
-    <a href="/2018/01/04/Variational Inference/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Variational Inference
-        
-      </div>
-    </a>
-  
-  
-</nav>
+                            if (typeof LivereTower === 'function') { return; }
 
-  
-</article>
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
 
-
-
-
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+            
+            
+        </div>
     </div>
-    <div class="mb-search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="q" value="site:yoursite.com">
-  </form>
-</div>
-<footer id="footer">
-	<h1 class="footer-blog-title">
-		<a href="/">What&#39;s life without whimsy?</a>
-	</h1>
-	<span class="copyright">
-		&copy; 2018 Yuanhanqing Huang<br>
-		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
-		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-	</span>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Yuanhanqing Huang 2018
+        <br>
+        Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
 </footer>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]]}});
 </script>
@@ -176,5 +251,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
+
 </body>
 </html>

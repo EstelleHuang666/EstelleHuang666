@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html class="full-height">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
   
   <title>Understand textsum and seq2seq with Attention from TensorFlow Code | What&#39;s life without whimsy?</title>
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="This article will peel textsum algorithm and seq2seq with attention mechanism based on the project on TensorFlow/models into very little detail. (tensorflow/models/research/textsum)And here is the cod">
 <meta name="keywords" content="Neural Network, TensorFlow">
 <meta property="og:type" content="article">
@@ -17,61 +20,132 @@
 <meta name="twitter:title" content="Understand textsum and seq2seq with Attention from TensorFlow Code">
 <meta name="twitter:description" content="This article will peel textsum algorithm and seq2seq with attention mechanism based on the project on TensorFlow/models into very little detail. (tensorflow/models/research/textsum)And here is the cod">
   
-    <link rel="alternative" href="/atom.xml" title="What&#39;s life without whimsy?" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="What&#39;s life without whimsy?" type="application/atom+xml">
   
   
-    <link rel="icon" href="/2017-03-04_14-26-51.jpg">
+    <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
-</head>
-<body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
-    <div class="mobile-nav-panel">
-	<i class="icon-reorder icon-large"></i>
-</div>
-<header id="header">
-	<h1 class="blog-title">
-		<a href="/">What&#39;s life without whimsy?</a>
-	</h1>
-	<nav class="nav">
-		<ul>
-			<li><a href="/">Home</a></li><li><a href="/resume">About Me</a></li><li><a href="/archives">Archives</a></li>
-			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
-			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
-		</ul>
-	</nav>
-	<div id="search-form-wrap">
-		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-	</div>
-</header>
-    <div id="main">
-      <article id="post-Understand textsum and seq2seq with Attention from TensorFlow Code" class="post">
-	<footer class="entry-meta-header">
-		<span class="meta-elements date">
-			<a href="/2018/01/23/Understand textsum and seq2seq with Attention from TensorFlow Code/" class="article-date">
-  <time datetime="2018-01-23T13:40:21.000Z" itemprop="datePublished">2018-01-23</time>
-</a>
-		</span>
-		<span class="meta-elements author">Yuanhanqing Huang</span>
-		<div class="commentscount">
-			
-		</div>
-	</footer>
-	
-	<header class="entry-header">
-		
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-    <h1 class="article-title entry-title" itemprop="name">
-      Understand textsum and seq2seq with Attention from TensorFlow Code
-    </h1>
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
-	</header>
-	<div class="entry-content">
-		
-    	<p>This article will peel textsum algorithm and seq2seq with attention mechanism based on the project on TensorFlow/models into very little detail. (<a href="https://github.com/tensorflow/models/tree/master/research/textsum" target="_blank" rel="external">tensorflow/models/research/textsum</a>)And here is the code of my <a href="https://github.com/EstelleHuang666/textsum_tensorflow_usr" target="_blank" rel="external">personal realization</a> of seq2seq with Attention based on the official code, and it turns out to converge quite well.  </p>
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Yuanhanqing Huang</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/Resume">
+                Resume
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/Resume">
+                Resume
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>Understand textsum and seq2seq with Attention from TensorFlow Code</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="/img/personal_pic.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Yuanhanqing Huang</span>
+                <span class="post-date sub-title">at: 2018-01-23</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/Neural-Network-TensorFlow/">Neural Network, TensorFlow</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <p>This article will peel textsum algorithm and seq2seq with attention mechanism based on the project on TensorFlow/models into very little detail. (<a href="https://github.com/tensorflow/models/tree/master/research/textsum" target="_blank" rel="external">tensorflow/models/research/textsum</a>)And here is the code of my <a href="https://github.com/EstelleHuang666/textsum_tensorflow_usr" target="_blank" rel="external">personal realization</a> of seq2seq with Attention based on the official code, and it turns out to converge quite well.  </p>
 <h2 id="Transfer-Text-into-bin-Type"><a href="#Transfer-Text-into-bin-Type" class="headerlink" title="Transfer Text into .bin Type"></a>Transfer Text into .bin Type</h2><p>This part is written in textsum_data_convert.py. The inputs are text file, encoded in utf-8. It has two functions.</p>
 <ol>
 <li>It outputs .bin file which transform the original unstructured text file into structured .bin file. </li>
@@ -95,69 +169,71 @@
 <p>six.next(example_gen) generates a tf.Example type if data of the following sample format. It’s long, but you only need to have a glanpse of its basic format.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">features &#123;</div><div class="line">  feature &#123;</div><div class="line">    key: &quot;abstract&quot;</div><div class="line">    value &#123;</div><div class="line">      bytes_list &#123;</div><div class="line">        value: &quot;&lt;d&gt;&lt;p&gt;&lt;s&gt;(CNN) -- Republican presidential contender Michele Bachmann defended her position on gay rights, the HPV vaccine and the debt ceiling as she made her debut on \&quot;The Tonight Show with Jay Leno.\&quot;&lt;/s&gt;&lt;/p&gt;&lt;/d&gt;&quot;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  feature &#123;</div><div class="line">    key: &quot;article&quot;</div><div class="line">    value &#123;</div><div class="line">      bytes_list &#123;</div><div class="line">        value: &quot;&lt;d&gt;&lt;p&gt;&lt;s&gt; Bachmann has more usually been the butt of Leno\&apos;s jokes -- a point he made as he thanked her for being a good sport.&lt;/s&gt; &lt;s&gt;\&quot;We\&apos;ve done a million jokes.&lt;/s&gt; &lt;s&gt;Hopefully, you haven\&apos;t been ... watching any of them,\&quot; he said, as she joined him on set.&lt;/s&gt; &lt;s&gt;But Leno largely skipped the jokes Friday as he quizzed the Minnesota congresswoman on her political positions.&lt;/s&gt; &lt;s&gt;First up was the issue of the HPV vaccine, a subject on which Bachmann hit fellow Republican contender and Texas Gov.&lt;/s&gt; &lt;s&gt;Rick Perry hard in this week\&apos;s CNN/Tea Party Republican Debate.&lt;/s&gt; &lt;s&gt;Perry signed an executive order in 2007 that required Texas schoolgirls to receive vaccinations against the sexually transmitted HPV, although it wasn\&apos;t implemented.&lt;/s&gt; &lt;s&gt;Bachmann told Leno that Perry\&apos;s action had been \&quot;an abuse of executive power\&quot; and had sparked concern over \&quot;crony capitalism,\&quot; an apparent reference to the fact that a former Perry aide was a top lobbyist for Merck, the manufacturer for the HPV vaccine.&lt;/s&gt; &lt;s&gt;Merck donated to Perry\&apos;s campaign fund.&lt;/s&gt; &lt;s&gt;She added: \&quot;The concern is that there\&apos;s, you know, potentially side effects that can come with something like that.&lt;/s&gt; &lt;s&gt;But it gives a false sense of assurance to a young woman when she has that that if she\&apos;s sexually active that she doesn\&apos;t have to worry about sexually transmitted diseases.\&quot;&lt;/s&gt; &lt;s&gt;Leno responded: \&quot;Well, I don\&apos;t know if it gives assurance.&lt;/s&gt; &lt;s&gt;It can prevent cervical cancer; correct?\&quot;&lt;/s&gt; &lt;s&gt;He then pressed Bachmann over comments she made earlier this week in which she said a woman had approached the congresswoman to say her daughter had suffered \&quot;mental retardation\&quot; as a result of receiving the vaccination.&lt;/s&gt; &lt;s&gt;There had been no recorded cases of such side effects despite 30 million people receiving the jab, Leno pointed out.&lt;/s&gt; &lt;s&gt;\&quot;I wasn\&apos;t speaking as a doctor.&lt;/s&gt; &lt;s&gt;I wasn\&apos;t speaking as a scientist.&lt;/s&gt; &lt;s&gt;I was just relating what this woman said,\&quot; Bachmann replied.&lt;/s&gt; &lt;s&gt;The former tax attorney and mother of five, who won the Iowa straw poll last month but has seen her poll ratings slide since Perry entered the race, also defended two clinics she runs with her husband, offering what she said was a Christian counseling service.&lt;/s&gt; &lt;s&gt;The clinics have come under fire over claims they use a controversial therapy that encourages gay and lesbian patients to change their sexual orientation.&lt;/s&gt; &lt;s&gt;Asking Bachmann why gay people shouldn\&apos;t have the right to be happily married, Leno said: \&quot;That whole \&apos;pray the gay away\&apos; thing, What?&lt;/s&gt; &lt;s&gt;I don\&apos;t get that.\&quot;&lt;/s&gt; &lt;s&gt;Bachmann said the clinics did not discriminate, but repeated her position that marriage should be between a man and a woman.&lt;/s&gt; &lt;s&gt;Quizzed on her opposition to raising the debt ceiling, Bachmann said she would have taken the same position whether it had been President Barack Obama or George W. Bush in power.&lt;/s&gt; &lt;s&gt;On Afghanistan, Bachmann failed to answer whether she thought American forces should withdraw, but paid tribute to the \&quot;unbelievable job\&quot; done by U.S. service men and women there.&lt;/s&gt; &lt;s&gt;Leno\&apos;s final question was whom Bachmann would pick as a running mate if she wins the Republican nomination, suggesting she might want someone more moderate to balance her views.&lt;/s&gt; &lt;s&gt;She joked: \&quot;Well, you\&apos;re taken.&lt;/s&gt; &lt;s&gt;You don\&apos;t want a cut in pay, so what can I say?\&quot;&lt;/s&gt; &lt;s&gt;Leno replied: \&quot;Well, we\&apos;d probably have an argument over that gay thing.\&quot;&lt;/s&gt; &lt;s&gt;@highlight  Bachmann continues her criticism of Rick Perry over the HPV vaccine  @highlight  Leno presses Bachmann on gay marriage and the counseling clinics she runs  @highlight  The presidential hopeful says her opposition to raising the debt ceiling was not political  @highlight  Bachmann declines to say who her running mate would be&lt;/s&gt;&lt;/p&gt;&lt;/d&gt;&quot;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-    
-	</div>
-	<footer class="entry-footer">
-		<div class="entry-meta-footer">
-			<span class="category">
-				
-			</span>
-			<span class="tags">
-				
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Neural-Network-TensorFlow/">Neural Network, TensorFlow</a></li></ul>
+        </div>
+        <div class="post-reply">
+            
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE4Ni81NzUz">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
 
-			</span>
-		</div>
-	</footer>
-	
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2018/01/04/Variational Inference/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">
-        
-          Variational Inference
-        
-      </div>
-    </a>
-  
-</nav>
+                            if (typeof LivereTower === 'function') { return; }
 
-  
-</article>
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
 
-
-
-
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+            
+            
+        </div>
     </div>
-    <div class="mb-search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="q" value="site:yoursite.com">
-  </form>
-</div>
-<footer id="footer">
-	<h1 class="footer-blog-title">
-		<a href="/">What&#39;s life without whimsy?</a>
-	</h1>
-	<span class="copyright">
-		&copy; 2018 Yuanhanqing Huang<br>
-		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
-		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-	</span>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Yuanhanqing Huang 2018
+        <br>
+        Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
 </footer>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
