@@ -1,526 +1,915 @@
 <!DOCTYPE html>
-<html class="full-height">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+
+
   
-  <title>What&#39;s life without whimsy?</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta property="og:type" content="website">
 <meta property="og:title" content="What&#39;s life without whimsy?">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="What&#39;s life without whimsy?">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="What&#39;s life without whimsy?">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+
+
+  <title>What's life without whimsy?</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
-    <link rel="alternate" href="/atom.xml" title="What&#39;s life without whimsy?" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/common.css">
-<link rel="stylesheet" href="/css/nav.css">
-<link rel="stylesheet" href="/css/layout.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
+
+
+
+
+
+
+
 
 </head>
 
-<body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header id="navbar" class="overflow-hidden">
-  <div class="container">
-    <nav class="nav">
-         <div class="nav-left">
-            <a href="/" class="nav-item" style="font-size: 20px;">
-              <span class="logo">Yuanhanqing Huang</span>'s Blog
-            </a>
-         </div>
-        <div class="nav-center is-hidden position-relative" id="search_container">
-            <div class="nav-item full-width full-height">
-                <i class="fa fa-search has-padding" aria-hidden="true"></i>
-                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
-                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
-            </div>
-            <div id="search_result"></div>
-        </div>
-        <div class="nav-right nav-menu">
-            <a class="nav-item" id="search">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </a>
-            
-            <a class="nav-item" href="/">
-                Home
-            </a>
-            
-            <a class="nav-item" href="/Resume">
-                Resume
-            </a>
-            
-        </div>
-        <span class="nav-toggle" id="navMenuDropdown">
-            <span></span>
-            <span></span>
-            <span></span>
-        </span>
-        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
-            
-            <a class="nav-item flex-1" href="/">
-                Home
-            </a>
-            
-            <a class="nav-item flex-1" href="/Resume">
-                Resume
-            </a>
-            
-        </div>
-    </nav>
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">What's life without whimsy?</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Homepage of Yuanhanqing Huang</p>
+      
   </div>
-</header>
 
-  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
-      <div class="main-inner-content">
-          <style>
-    .post-hover:hover {
-        box-shadow: inset 0 0 100px #000;
-        transition: box-shadow .2s;
-    }
-
-    .sub-post-container .post-hover:hover h3 {
-        text-decoration: underline gray;
-    }
-
-
-    .primary-item-main {
-        height: 330px;
-        background-size: cover;
-    }
-
-    .primary-container .title,
-    .primary-container .sub-title,
-    .primary-container .post-content-text,
-    .primary-container .date {
-        color: #fff;
-    }
-
-    .post-content-text {
-        color: #f1f1f1!important;
-    }
-
-    .primary-container .post-hover {
-        background: black;
-    }
-
-    .content-bg-mask {
-        background: rgba(0,0,0,.4);
-    }
-
-</style>
-
-<div style="background: #f5f8f9;">
-    <div id="main-container" class="container" style="padding-top: 20px;">
-        <div class="is-flex main-content justify-center">
-            <section class="column is-9">
-                
-<div class="primary-container content-box is-flex-desktop clear-padding bottom-line" style="margin-bottom: 25px;">
-    <div class="column  is-7-desktop">
-        <a href="/2018/01/23/Understand textsum and seq2seq with Attention from TensorFlow Code/">
-            <div class="full-height post-hover"
-                 style="
-                         background-image: url('');
-                         height: 350px;
-                         background-size: cover;
-                         background-repeat: no-repeat;
-                         ">
-                    <div class=" is-flex flex-column center content has-text-centered full-height has-padding content-bg-mask">
-                        <h1 class="title text-shadow" style="margin-bottom: 15px;">
-                            Understand textsum and seq2seq with Attention fr..
-                        </h1>
-                        <div>
-                        
-                            `
-                                <span class="tag is-post-tag">Neural Network, TensorFlow</span>
-                            
-                        
-                        </div>
-                        <p class="post-content-text is-marginless has-padding text-shadow">
-                            This article will peel textsum algorithm and seq2seq with attention mechanism based on the project on TensorFlow/model..
-                        </p>
-                        <p class="date text-shadow">2018-01-23</p>
-                        <button class="button is-info is-small">Read More</button>
-                    </div>
-            </div>
-        </a>
-    </div>
-    <div class="column is-5 is-hidden-touch" style="padding-left: 0;">
-        <div class="full-height is-flex flex-column justify-space-between" style="min-height: 350px;">
-            
-                
-<a class="post-hover" href="/2018/01/04/Variational Inference/" style="height: 48.5%">
-    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('')">
-        <div class="content-bg-mask full-width full-height has-padding">
-            <h3 class="title is-marginless text-shadow">
-                Variational Inference
-            </h3>
-            
-            
-            <span class="tag is-post-tag">Bayesian Modeling and Inference</span>
-            
-            
-            <p class="sub-title text-shadow"></p>
-            <p class="is-marginless text-shadow post-content-text">
-                Variational Bayesian methods are a family of tec..
-            </p>
-            <p class="date text-shadow is-marginless">2018-01-04</p>
-        </div>
-    </div>
-</a>
-            
-            
-                
-<a class="post-hover" href="/2017/12/12/Overview of MCMC Methods/" style="height: 48.5%">
-    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('/2017/12/12/Overview%20of%20MCMC%20Methods/reject_sampling.png')">
-        <div class="content-bg-mask full-width full-height has-padding">
-            <h3 class="title is-marginless text-shadow">
-                Overview of MCMC Methods (I)
-            </h3>
-            
-            
-            <span class="tag is-post-tag">Bayesian Modeling and Inference</span>
-            
-            
-            <p class="sub-title text-shadow"></p>
-            <p class="is-marginless text-shadow post-content-text">
-                Why We Need MCMC MethodsUnder the Bayesian probl..
-            </p>
-            <p class="date text-shadow is-marginless">2017-12-12</p>
-        </div>
-    </div>
-</a>
-            
-        </div>
-    </div>
-    <div class="column is-12 is-hidden-desktop">
-        
-        
-<a class="post-hover" href="/2018/01/04/Variational Inference/" style="height: 48.5%">
-    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('')">
-        <div class="content-bg-mask full-width full-height has-padding">
-            <h3 class="title is-marginless text-shadow">
-                Variational Inference
-            </h3>
-            
-            
-            <span class="tag is-post-tag">Bayesian Modeling and Inference</span>
-            
-            
-            <p class="sub-title text-shadow"></p>
-            <p class="is-marginless text-shadow post-content-text">
-                Variational Bayesian methods are a family of tec..
-            </p>
-            <p class="date text-shadow is-marginless">2018-01-04</p>
-        </div>
-    </div>
-</a>
-        
-        
-        
-<a class="post-hover" href="/2017/12/12/Overview of MCMC Methods/" style="height: 48.5%">
-    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('/2017/12/12/Overview%20of%20MCMC%20Methods/reject_sampling.png')">
-        <div class="content-bg-mask full-width full-height has-padding">
-            <h3 class="title is-marginless text-shadow">
-                Overview of MCMC Methods (I)
-            </h3>
-            
-            
-            <span class="tag is-post-tag">Bayesian Modeling and Inference</span>
-            
-            
-            <p class="sub-title text-shadow"></p>
-            <p class="is-marginless text-shadow post-content-text">
-                Why We Need MCMC MethodsUnder the Bayesian probl..
-            </p>
-            <p class="date text-shadow is-marginless">2017-12-12</p>
-        </div>
-    </div>
-</a>
-        
-    </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-                    
-                    
-                
-                    
-                        <div class="content-box  is-hidden-desktop" style="margin-bottom: 27px;">
-                            <a class="post-hover" href="/2018/01/04/Variational Inference/">
-                            <div class="columns" style="min-height: 230px;">
-                                
-                                <div class="column is-8-desktop post-content is-flex align-center">
-                                    <div class="content">
-                                        <h3>Variational Inference</h3>
-                                        
-                                        <p>
-                                            
-                                                <span class="tag is-post-tag">Bayesian Modeling and Inference</span>
-                                            
-                                        </p>
-                                        <p>
-                                            Variational Bayesian methods are a family of techniques for approximating intractable integrals arising in Bayesian inference and machine learning. They are typically used in com..
-                                        </p>
-                                        <p>2018-01-04</p>
-                                        <button class="button is-small">Read More</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        </div>
-                    
-                
-                    
-                        <div class="content-box  is-hidden-desktop" style="margin-bottom: 27px;">
-                            <a class="post-hover" href="/2017/12/12/Overview of MCMC Methods/">
-                            <div class="columns" style="min-height: 230px;">
-                                
-                                    <div class="column is-4-desktop is-5-tablet post-avatar is-hidden-mobile"
-                                         style="margin: 10px; background-size: cover;background-image: url('/2017/12/12/Overview%20of%20MCMC%20Methods/reject_sampling.png')">
-                                    </div>
-                                
-                                <div class="column is-8-desktop post-content is-flex align-center">
-                                    <div class="content">
-                                        <h3>Overview of MCMC Methods (I)</h3>
-                                        
-                                        <p>
-                                            
-                                                <span class="tag is-post-tag">Bayesian Modeling and Inference</span>
-                                            
-                                        </p>
-                                        <p>
-                                            Why We Need MCMC MethodsUnder the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could ..
-                                        </p>
-                                        <p>2017-12-12</p>
-                                        <button class="button is-small">Read More</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        </div>
-                    
-                
-                <!--翻頁-->
-                <nav class="pagination is-flex" style="justify-content: flex-end">
-                    
-                        
-                        
-                    
-                </nav>
-            </section>
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
             
-                <style>
-    /*user info start*/
-    .user-info {
-        padding: 15px 0 0;
-    }
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
 
-    .user-info .avatar {
-        width: 155px;
-        height: 155px;
-        border-radius: 50%;
-    }
+      
+    </ul>
+  
 
-    .sns-container {
-        flex-wrap: wrap;
-    }
+  
+</nav>
 
-    .sns-container a{
-        color: black;
-    }
-    /*user info end*/
 
-    /*Tag start*/
-    #tag_cloud .tags-item{
-        display: inline-block;
-        color: #000;
-        border: 1px solid gray;
 
-        margin: 4px 2px;
-        padding: 0 4px;
-        border-radius: 6px;
-    }
-    /*Tag end*/
+ </div>
+    </header>
 
-    /*Site box start*/
-    .site-box {
-        height: 60px;
-    }
-    /*Site box end*/
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
 
-    .category-list-item,
-    .archive-list-item {
-        display: flex;
-        margin-bottom: 4px;
-        justify-content: space-between;
-    }
-    .category-list-link,
-    .archive-list-link {
-        color: black;
-    }
+  
 
-    .category-list-count,
-    .archive-list-count {
-        width: 32px;
-        text-align: center;
-        border-radius: 4px;
-        color: #fff;
-        background-color: gray;
-    }
-</style>
-<aside class="column is-hidden-touch is-3" style="max-width: 280px; min-width: 230px">
-    <div class="content-box user-info">
-        <div class="has-padding">
-            <header class="has-text-centered">
-                <img class="avatar" src="/img/personal_pic.jpg">
-            </header>
-            <section class="has-text-centered">
-                <h3><strong>Yuanhanqing Huang</strong></h3>
-                <p class="sub-title">にちじょう</p>
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/23/Understand textsum and seq2seq with Attention from TensorFlow Code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanhanqing Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="What's life without whimsy?">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
                 
-                <p class="is-flex center" style=" color: gray">
-                    <i class="fa fa-map-marker" style="padding: 5px"></i>
-                    West Lafayette, IN
-                </p>
-                
-            </section>
+                <a class="post-title-link" href="/2018/01/23/Understand textsum and seq2seq with Attention from TensorFlow Code/" itemprop="url">Understand textsum and seq2seq with Attention from TensorFlow Code</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-23T21:40:21-05:00">
+                2018-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
-        <div class="top-line">
-            <ul class="sns-container justify-center is-flex has-padding">
-                
+      </header>
+    
 
-                
-                <li>
-                    <a target="_blank" href="https://twitter.com/Murphy__Huang">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                    </a>
-                </li>
-                
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-                
-                <li>
-                    <a target="_blank" href="https://www.zhihu.com/people/craigie_hill">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                    </a>
-                </li>
-                
+      
+      
 
-                
+      
+        
+          
+            <p>This article will peel textsum algorithm and seq2seq with attention mechanism based on the project on TensorFlow/models into very little detail. (<a href="https://github.com/tensorflow/models/tree/master/research/textsum" target="_blank" rel="external">tensorflow/models/research/textsum</a>)And here is the code of my <a href="https://github.com/EstelleHuang666/textsum_tensorflow_usr" target="_blank" rel="external">personal realization</a> of seq2seq with Attention based on the official code, and it turns out to converge quite well.  </p>
+<h2 id="Transfer-Text-into-bin-Type"><a href="#Transfer-Text-into-bin-Type" class="headerlink" title="Transfer Text into .bin Type"></a>Transfer Text into .bin Type</h2><p>This part is written in textsum_data_convert.py. The inputs are text file, encoded in utf-8. It has two functions.</p>
+<ol>
+<li>It outputs .bin file which transform the original unstructured text file into structured .bin file. </li>
+<li>It outputs vocab file which counts frequncy of certain word in text files and stores the word as well as its frequency.<br>As for the first function, we have: </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">def _convert_files_to_binary(input_filenames, output_filename):</div><div class="line">  with open(output_filename, &apos;wb&apos;) as writer:</div><div class="line">    for filename in input_filenames:</div><div class="line">      with open(filename, &apos;r&apos;) as f:</div><div class="line">        document = f.read()</div><div class="line">    </div><div class="line">      document_parts = document.split(&apos;\n&apos;, 1)</div><div class="line">      assert len(document_parts) == 2</div><div class="line">    </div><div class="line">      title = &apos;&lt;d&gt;&lt;p&gt;&lt;s&gt;&apos; + document_parts[0] + &apos;&lt;/s&gt;&lt;/p&gt;&lt;/d&gt;&apos;</div><div class="line">      # encode the title into the form of (&apos;UTF-8&apos;), otherwise in tf_example.features.feature[].bytes_list.value.extend()</div><div class="line">      # will report an error.</div><div class="line">      title = title.encode(&apos;utf8&apos;)</div><div class="line">      </div><div class="line">      # body = document_parts[1].decode(&apos;utf8&apos;).replace(&apos;\n&apos;, &apos; &apos;).replace(&apos;\t&apos;, &apos; &apos;)</div><div class="line">      # AttributeError: &apos;str&apos; object has no attribute &apos;decode&apos; -&gt; by Murphy 02.Jan.18</div><div class="line">      try:</div><div class="line">        body = document_parts[1].decode(&apos;utf8&apos;).replace(&apos;\n&apos;, &apos; &apos;).replace(&apos;\t&apos;, &apos; &apos;)</div><div class="line">      except:</div><div class="line">        body = document_parts[1].replace(&apos;\n&apos;, &apos; &apos;).replace(&apos;\t&apos;, &apos; &apos;)</div><div class="line">      sentences = sent_tokenize(body)</div><div class="line">      body = &apos;&lt;d&gt;&lt;p&gt;&apos; + &apos; &apos;.join([&apos;&lt;s&gt;&apos; + sentence + &apos;&lt;/s&gt;&apos; for sentence in sentences]) + &apos;&lt;/p&gt;&lt;/d&gt;&apos;</div><div class="line">      body = body.encode(&apos;utf8&apos;)</div><div class="line">    </div><div class="line">      tf_example = example_pb2.Example()</div><div class="line">      tf_example.features.feature[&apos;article&apos;].bytes_list.value.extend([body])</div><div class="line">      tf_example.features.feature[&apos;abstract&apos;].bytes_list.value.extend([title])</div><div class="line">      tf_example_str = tf_example.SerializeToString()</div><div class="line">      str_len = len(tf_example_str)</div><div class="line">      writer.write(struct.pack(&apos;q&apos;, str_len))</div><div class="line">      writer.write(struct.pack(&apos;%ds&apos; % str_len, tf_example_str))</div></pre></td></tr></table></figure>
+<p>It processes all the text files under the path “./data/cnn/stories”. These text files are consist of two parts, “title” and “body” (also known as “abstract” and “article”), which are seperated by the first “\n”. For title and body, both of them are decorated with prefix &lt;\d&gt;&lt;\p&gt;&lt;\s&gt; and postfix &lt;/\s&gt;&lt;/\p&gt;&lt;/\d&gt;. Moreover, body part is seperated into sentences by the fucntion sent_tokenize from nltk package. Every sentence in body is decorated with prefix &lt;\s&gt; and postfix &lt;/\s&gt;. The “/n”s in body are replaced by “/t”s. Then, the processed “title” and “body” are writen into text file through the format of example_pb2.Example(), which is a format imported from tensorflow.core.example. It can simply be preceived as a storing format without special meaning. If you like, you could write your own format to replace example_pb2.Example().</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">def _text_to_vocabulary(input_directories, vocabulary_filename, max_words=200000):</div><div class="line">  filenames = _get_filenames(input_directories)</div><div class="line">    </div><div class="line">  counter = collections.Counter()</div><div class="line">    </div><div class="line">  for filename in filenames:</div><div class="line">    with open(filename, &apos;r&apos;) as f:</div><div class="line">      document = f.read()</div><div class="line">    </div><div class="line">    words = document.split()</div><div class="line">    counter.update(words)</div><div class="line"></div><div class="line">  with open(vocabulary_filename, &apos;w&apos;) as writer:</div><div class="line">    for word, count in counter.most_common(max_words - 2):</div><div class="line">      writer.write(word + &apos; &apos; + str(count) + &apos;\n&apos;)</div><div class="line">    writer.write(&apos;&lt;s&gt; 0\n&apos;)</div><div class="line">    writer.write(&apos;&lt;/s&gt; 0\n&apos;)</div><div class="line">    writer.write(&apos;&lt;UNK&gt; 0\n&apos;)</div><div class="line">    writer.write(&apos;&lt;PAD&gt; 0\n&apos;)</div></pre></td></tr></table></figure>
+<p>collections.Counter() works as a collector (or you can see as a dictionary) in the format of {“word1”: frequency1 , “word2”: frequency2 ,…}. By executing “.update” operation and pass a list of words into the Counter, you could let this class automatically update the word-frequency dictionary. At the end, it adds some symbols with special meaning to the Counter. (&lt;\s&gt; &lt;/\s&gt; denote the start and the end of a sentence; <pad> is used to padding the blank to make all of the sentences have same length) </pad></p>
+<h2 id="batcher-reader-management-of-input-data"><a href="#batcher-reader-management-of-input-data" class="headerlink" title="batcher_reader: management of input data"></a>batcher_reader: management of input data</h2><p>First, let’s have a glance of the major part of function main:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">vocab = data.Vocab(FLAGS.vocab_path, 1000000)</div><div class="line">  # Check for presence of required special tokens.</div><div class="line">  assert vocab.CheckVocab(data.PAD_TOKEN) &gt; 0</div><div class="line">  assert vocab.CheckVocab(data.UNKNOWN_TOKEN) &gt;= 0</div><div class="line">  assert vocab.CheckVocab(data.SENTENCE_START) &gt; 0</div><div class="line">  assert vocab.CheckVocab(data.SENTENCE_END) &gt; 0</div><div class="line"></div><div class="line">  batch_size = 4</div><div class="line">  if FLAGS.mode == &apos;decode&apos;:</div><div class="line">    batch_size = FLAGS.beam_size</div><div class="line"></div><div class="line">  hps = seq2seq_attention_model.HParams(</div><div class="line">      mode=FLAGS.mode,  # train, eval, decode</div><div class="line">      min_lr=0.001,  # min learning rate.</div><div class="line">      lr=0.015,  # learning rate</div><div class="line">      batch_size=batch_size,</div><div class="line">      enc_layers=1,</div><div class="line">      enc_timesteps=800,</div><div class="line">      dec_timesteps=50,</div><div class="line">      min_input_len=2,  # discard articles/summaries &lt; than this</div><div class="line">      num_hidden=256,  # for rnn cell</div><div class="line">      emb_dim=128,  # If 0, don&apos;t use embedding</div><div class="line">      max_grad_norm=2,</div><div class="line">      num_softmax_samples=4096)  # If 0, no sampled softmax.</div><div class="line"></div><div class="line">  batcher = batch_reader.Batcher(</div><div class="line">      FLAGS.data_path, vocab, hps, FLAGS.article_key,</div><div class="line">      FLAGS.abstract_key, FLAGS.max_article_sentences,</div><div class="line">      FLAGS.max_abstract_sentences, bucketing=FLAGS.use_bucketing,</div><div class="line">      truncate_input=FLAGS.truncate_input)</div><div class="line">  tf.set_random_seed(FLAGS.random_seed)</div><div class="line"></div><div class="line">  if hps.mode == &apos;train&apos;:</div><div class="line">    model = seq2seq_attention_model.Seq2SeqAttentionModel(</div><div class="line">        hps, vocab, num_gpus=FLAGS.num_gpus)</div><div class="line">    _Train(model, batcher)</div><div class="line">  elif hps.mode == &apos;eval&apos;:</div><div class="line">    model = seq2seq_attention_model.Seq2SeqAttentionModel(</div><div class="line">        hps, vocab, num_gpus=FLAGS.num_gpus)</div><div class="line">    _Eval(model, batcher, vocab=vocab)</div><div class="line">  elif hps.mode == &apos;decode&apos;:</div><div class="line">    decode_mdl_hps = hps</div><div class="line">    # Only need to restore the 1st step and reuse it since</div><div class="line">    # we keep and feed in state for each step&apos;s output.</div><div class="line">    decode_mdl_hps = hps._replace(dec_timesteps=1)</div><div class="line">    model = seq2seq_attention_model.Seq2SeqAttentionModel(</div><div class="line">        decode_mdl_hps, vocab, num_gpus=FLAGS.num_gpus)</div><div class="line">    decoder = seq2seq_attention_decode.BSDecoder(model, batcher, hps, vocab)</div><div class="line">    decoder.DecodeLoop()</div></pre></td></tr></table></figure></p>
+<p>We can see that main function do the following steps:</p>
+<ol>
+<li>read in hyperparameters;</li>
+<li>use batch_reader to manage the data;</li>
+<li>execute training/evaluating/decoding process.</li>
+</ol>
+<p>For batch_reader, it only contains one class: Batcher. It has following methods:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class Batcher(object):</div><div class="line">	def NextBatch(self):</div><div class="line"></div><div class="line">	def _FillInputQueue(self):</div><div class="line"></div><div class="line">	def _FillBucketInputQueue(self):</div><div class="line"></div><div class="line">	def _WatchThreads(self):</div><div class="line"></div><div class="line">	def _TextGenerator(self, example_gen):</div><div class="line"></div><div class="line">	def _GetExFeatureText(self, ex, key):</div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>We are gonna to dissect these code one by one:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line">def _FillInputQueue(self):</div><div class="line">	&quot;&quot;&quot;Fill input queue with ModelInput.&quot;&quot;&quot;</div><div class="line">	start_id = self._vocab.WordToId(data.SENTENCE_START)</div><div class="line">	end_id = self._vocab.WordToId(data.SENTENCE_END)</div><div class="line">	pad_id = self._vocab.WordToId(data.PAD_TOKEN)</div><div class="line">	input_gen = self._TextGenerator(data.ExampleGen(self._data_path))</div><div class="line">	while True:</div><div class="line">	  (article, abstract) = six.next(input_gen)</div><div class="line">	  article_sentences = [sent.strip() for sent in</div><div class="line">	                       data.ToSentences(article.decode(&apos;utf-8&apos;), include_token=False)]</div><div class="line">	  abstract_sentences = [sent.strip() for sent in</div><div class="line">	                        data.ToSentences(abstract.decode(&apos;utf-8&apos;), include_token=False)]</div><div class="line"></div><div class="line">	  enc_inputs = []</div><div class="line">	  # Use the &lt;s&gt; as the &lt;GO&gt; symbol for decoder inputs.</div><div class="line">	  dec_inputs = [start_id]</div><div class="line"></div><div class="line">	  # Convert first N sentences to word IDs, stripping existing &lt;s&gt; and &lt;/s&gt;.</div><div class="line">	  for i in xrange(min(self._max_article_sentences,</div><div class="line">	                      len(article_sentences))):</div><div class="line">	    enc_inputs += data.GetWordIds(article_sentences[i], self._vocab)</div><div class="line">	  for i in xrange(min(self._max_abstract_sentences,</div><div class="line">	                      len(abstract_sentences))):</div><div class="line">	    dec_inputs += data.GetWordIds(abstract_sentences[i], self._vocab)</div><div class="line"></div><div class="line">	  # Filter out too-short input</div><div class="line">	  if (len(enc_inputs) &lt; self._hps.min_input_len or</div><div class="line">	      len(dec_inputs) &lt; self._hps.min_input_len):</div><div class="line">	    tf.logging.warning(&apos;Drop an example - too short.\nenc:%d\ndec:%d&apos;,</div><div class="line">	                       len(enc_inputs), len(dec_inputs))</div><div class="line">	    continue</div><div class="line"></div><div class="line">	  # If we&apos;re not truncating input, throw out too-long input</div><div class="line">	  if not self._truncate_input:</div><div class="line">	    if (len(enc_inputs) &gt; self._hps.enc_timesteps or</div><div class="line">	        len(dec_inputs) &gt; self._hps.dec_timesteps):</div><div class="line">	      tf.logging.warning(&apos;Drop an example - too long.\nenc:%d\ndec:%d&apos;,</div><div class="line">	                         len(enc_inputs), len(dec_inputs))</div><div class="line">	      continue</div><div class="line">	  # If we are truncating input, do so if necessary</div><div class="line">	  else:</div><div class="line">	    if len(enc_inputs) &gt; self._hps.enc_timesteps:</div><div class="line">	      enc_inputs = enc_inputs[:self._hps.enc_timesteps]</div><div class="line">	    if len(dec_inputs) &gt; self._hps.dec_timesteps:</div><div class="line">	      dec_inputs = dec_inputs[:self._hps.dec_timesteps]</div><div class="line"></div><div class="line">	  # targets is dec_inputs without &lt;s&gt; at beginning, plus &lt;/s&gt; at end</div><div class="line">	  targets = dec_inputs[1:]</div><div class="line">	  targets.append(end_id)</div><div class="line"></div><div class="line">	  # Now len(enc_inputs) should be &lt;= enc_timesteps, and</div><div class="line">	  # len(targets) = len(dec_inputs) should be &lt;= dec_timesteps</div><div class="line"></div><div class="line">	  enc_input_len = len(enc_inputs)</div><div class="line">	  dec_output_len = len(targets)</div><div class="line"></div><div class="line">	  # Pad if necessary</div><div class="line">	  while len(enc_inputs) &lt; self._hps.enc_timesteps:</div><div class="line">	    enc_inputs.append(pad_id)</div><div class="line">	  while len(dec_inputs) &lt; self._hps.dec_timesteps:</div><div class="line">	    dec_inputs.append(end_id)</div><div class="line">	  while len(targets) &lt; self._hps.dec_timesteps:</div><div class="line">	    targets.append(end_id)</div><div class="line"></div><div class="line">	  element = ModelInput(enc_inputs, dec_inputs, targets, enc_input_len,</div><div class="line">	                       dec_output_len, &apos; &apos;.join(article_sentences),</div><div class="line">	                       &apos; &apos;.join(abstract_sentences))</div><div class="line">	  self._input_queue.put(element)</div></pre></td></tr></table></figure></p>
+<p>self._vocab is a class defined in data.py. To understand it briefly, you can view it as composed of two dictionary: _word_to_id and _id_to_word. In addition, this class provides methods related to “word to id” and “id to word” processes. As for self._TextGenerator method, it uses yield instead of return to deal with the huge memory usage. To master yield, you must understand that when you call the function, the code you have written in the function body does not run. The function only returns the generator object. To understand better, please refer to <a href="https://pythontips.com/2013/09/29/the-python-yield-keyword-explained/" target="_blank" rel="external">this article</a>. </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def _TextGenerator(self, example_gen):</div><div class="line">	&quot;&quot;&quot;Generates article and abstract text from tf.Example.&quot;&quot;&quot;</div><div class="line">	while True:</div><div class="line">	  e = six.next(example_gen)</div><div class="line">	  try:</div><div class="line">	    article_text = self._GetExFeatureText(e, self._article_key) //return ex.features.feature[key].bytes_list.value[0]</div><div class="line">	    abstract_text = self._GetExFeatureText(e, self._abstract_key)</div><div class="line">	  except ValueError:</div><div class="line">	    tf.logging.error(&apos;Failed to get article or abstract from example&apos;)</div><div class="line">	    continue</div><div class="line"></div><div class="line">	  yield (article_text, abstract_text)</div></pre></td></tr></table></figure>
+<p>six.next(example_gen) generates a tf.Example type if data of the following sample format. It’s long, but you only need to have a glanpse of its basic format.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">features &#123;</div><div class="line">  feature &#123;</div><div class="line">    key: &quot;abstract&quot;</div><div class="line">    value &#123;</div><div class="line">      bytes_list &#123;</div><div class="line">        value: &quot;&lt;d&gt;&lt;p&gt;&lt;s&gt;(CNN) -- Republican presidential contender Michele Bachmann defended her position on gay rights, the HPV vaccine and the debt ceiling as she made her debut on \&quot;The Tonight Show with Jay Leno.\&quot;&lt;/s&gt;&lt;/p&gt;&lt;/d&gt;&quot;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  feature &#123;</div><div class="line">    key: &quot;article&quot;</div><div class="line">    value &#123;</div><div class="line">      bytes_list &#123;</div><div class="line">        value: &quot;&lt;d&gt;&lt;p&gt;&lt;s&gt; Bachmann has more usually been the butt of Leno\&apos;s jokes -- a point he made as he thanked her for being a good sport.&lt;/s&gt; &lt;s&gt;\&quot;We\&apos;ve done a million jokes.&lt;/s&gt; &lt;s&gt;Hopefully, you haven\&apos;t been ... watching any of them,\&quot; he said, as she joined him on set.&lt;/s&gt; &lt;s&gt;But Leno largely skipped the jokes Friday as he quizzed the Minnesota congresswoman on her political positions.&lt;/s&gt; &lt;s&gt;First up was the issue of the HPV vaccine, a subject on which Bachmann hit fellow Republican contender and Texas Gov.&lt;/s&gt; &lt;s&gt;Rick Perry hard in this week\&apos;s CNN/Tea Party Republican Debate.&lt;/s&gt; &lt;s&gt;Perry signed an executive order in 2007 that required Texas schoolgirls to receive vaccinations against the sexually transmitted HPV, although it wasn\&apos;t implemented.&lt;/s&gt; &lt;s&gt;Bachmann told Leno that Perry\&apos;s action had been \&quot;an abuse of executive power\&quot; and had sparked concern over \&quot;crony capitalism,\&quot; an apparent reference to the fact that a former Perry aide was a top lobbyist for Merck, the manufacturer for the HPV vaccine.&lt;/s&gt; &lt;s&gt;Merck donated to Perry\&apos;s campaign fund.&lt;/s&gt; &lt;s&gt;She added: \&quot;The concern is that there\&apos;s, you know, potentially side effects that can come with something like that.&lt;/s&gt; &lt;s&gt;But it gives a false sense of assurance to a young woman when she has that that if she\&apos;s sexually active that she doesn\&apos;t have to worry about sexually transmitted diseases.\&quot;&lt;/s&gt; &lt;s&gt;Leno responded: \&quot;Well, I don\&apos;t know if it gives assurance.&lt;/s&gt; &lt;s&gt;It can prevent cervical cancer; correct?\&quot;&lt;/s&gt; &lt;s&gt;He then pressed Bachmann over comments she made earlier this week in which she said a woman had approached the congresswoman to say her daughter had suffered \&quot;mental retardation\&quot; as a result of receiving the vaccination.&lt;/s&gt; &lt;s&gt;There had been no recorded cases of such side effects despite 30 million people receiving the jab, Leno pointed out.&lt;/s&gt; &lt;s&gt;\&quot;I wasn\&apos;t speaking as a doctor.&lt;/s&gt; &lt;s&gt;I wasn\&apos;t speaking as a scientist.&lt;/s&gt; &lt;s&gt;I was just relating what this woman said,\&quot; Bachmann replied.&lt;/s&gt; &lt;s&gt;The former tax attorney and mother of five, who won the Iowa straw poll last month but has seen her poll ratings slide since Perry entered the race, also defended two clinics she runs with her husband, offering what she said was a Christian counseling service.&lt;/s&gt; &lt;s&gt;The clinics have come under fire over claims they use a controversial therapy that encourages gay and lesbian patients to change their sexual orientation.&lt;/s&gt; &lt;s&gt;Asking Bachmann why gay people shouldn\&apos;t have the right to be happily married, Leno said: \&quot;That whole \&apos;pray the gay away\&apos; thing, What?&lt;/s&gt; &lt;s&gt;I don\&apos;t get that.\&quot;&lt;/s&gt; &lt;s&gt;Bachmann said the clinics did not discriminate, but repeated her position that marriage should be between a man and a woman.&lt;/s&gt; &lt;s&gt;Quizzed on her opposition to raising the debt ceiling, Bachmann said she would have taken the same position whether it had been President Barack Obama or George W. Bush in power.&lt;/s&gt; &lt;s&gt;On Afghanistan, Bachmann failed to answer whether she thought American forces should withdraw, but paid tribute to the \&quot;unbelievable job\&quot; done by U.S. service men and women there.&lt;/s&gt; &lt;s&gt;Leno\&apos;s final question was whom Bachmann would pick as a running mate if she wins the Republican nomination, suggesting she might want someone more moderate to balance her views.&lt;/s&gt; &lt;s&gt;She joked: \&quot;Well, you\&apos;re taken.&lt;/s&gt; &lt;s&gt;You don\&apos;t want a cut in pay, so what can I say?\&quot;&lt;/s&gt; &lt;s&gt;Leno replied: \&quot;Well, we\&apos;d probably have an argument over that gay thing.\&quot;&lt;/s&gt; &lt;s&gt;@highlight  Bachmann continues her criticism of Rick Perry over the HPV vaccine  @highlight  Leno presses Bachmann on gay marriage and the counseling clinics she runs  @highlight  The presidential hopeful says her opposition to raising the debt ceiling was not political  @highlight  Bachmann declines to say who her running mate would be&lt;/s&gt;&lt;/p&gt;&lt;/d&gt;&quot;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-                
-
-                
-                <li>
-                    <a target="_blank" href="https://github.com/EstelleHuang666">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                    </a>
-                </li>
-                
-
-                
-            </ul>
-        </div>
+          
+        
+      
     </div>
-    <div class="content-box">
-        <!--post数量和tag category 数量-->
-        <div class="site-box is-flex">
-            <div class="flex-1 is-flex flex-column center full-height right-line">
-                <strong>3</strong>
-                <p>Posts</p>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/04/Variational Inference/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanhanqing Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="What's life without whimsy?">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/04/Variational Inference/" itemprop="url">Variational Inference</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-04T13:08:11-05:00">
+                2018-01-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Variational Bayesian methods are a family of techniques for approximating intractable integrals arising in Bayesian inference and machine learning. They are typically used in complex statistical models consisting of observed variables (usually termed “data”) as well as unknown parameters and latent variables, with various sorts of relationships among the three types of random variables, as might be described by a graphical model. As is typical in Bayesian inference, the parameters and latent variables are grouped together as “unobserved variables”. Variational Bayesian methods are primarily used for two purposes:</p>
+<ol>
+<li>To provide an analytical approximation to the posterior probability of the unobserved variables, in order to do statistical inference over these variables.</li>
+<li>To derive a lower bound for the marginal likelihood (sometimes called the “evidence”) of the observed data (i.e. the marginal probability of the data given the model, with marginalization performed over unobserved variables). This is typically used for performing model selection, the general idea being that a higher marginal likelihood for a given model indicates a better fit of the data by that model and hence a greater probability that the model in question was the one that generated the data. (See also the Bayes factor article.)</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/12/Overview of MCMC Methods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanhanqing Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="What's life without whimsy?">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/12/Overview of MCMC Methods/" itemprop="url">Overview of MCMC Methods (I)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-12T10:00:00-05:00">
+                2017-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Why-We-Need-MCMC-Methods"><a href="#Why-We-Need-MCMC-Methods" class="headerlink" title="Why We Need MCMC Methods"></a>Why We Need MCMC Methods</h1><p>Under the Bayesian problem setting, all too often, it is difficult to figure out the real posterior distribtuion. To understand this difficulty, we could firstly have a glimpse of the Bayesian equation: </p>
+<script type="math/tex; mode=display">P(y_{i}|x)=\frac{P(x|y_{i})P(y_{i})}{\sum{P(x|y)P(y)}}</script><p>It is always difficult to calculate the denominator, since it is always impossible to enumerate all of the possible $y$ and corresponding $x$ from my understanding. And that’s also why Geoffrey Hinton put forward Convergence Divergence to train Boltzmann Machine. Therefore we needs methods to help us approximate the posterior. Currently there are two methods, one is variational inference, the other is Monte Carlo Markov Chain sampling methods, which is the topic for this article.<br>Under ordinary inference problem setting, when we need to figure out certain parameters, we should calculate them in the following way:  </p>
+<script type="math/tex; mode=display">\theta = \int_{\theta}{\theta P(\theta|x)d\theta}</script><p>In MCMC, after sampling adequate number of samples from the posterior distribution, we could approximate the original equation in the following way:  </p>
+<script type="math/tex; mode=display">\hat{E}_{\theta} =\frac{1}{n} \sum_{i=1}^{n}{\theta^{(i)}}</script><h1 id="Sampling-Methods"><a href="#Sampling-Methods" class="headerlink" title="Sampling Methods"></a>Sampling Methods</h1><h2 id="Simplest-Sampling-Methods-Inverse-of-CDF"><a href="#Simplest-Sampling-Methods-Inverse-of-CDF" class="headerlink" title="Simplest Sampling Methods: Inverse of CDF"></a>Simplest Sampling Methods: Inverse of CDF</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">u ~ U(0, 1)</div><div class="line">x = CDF_inverse(u)</div></pre></td></tr></table></figure>
+<p>This sampling method is the one we see most in our undergraduate Probability class. There is a problem haunting it: all too often, it is difficult or even impossible to write out the function of CDF_inverse. This problem compels us to find a more feasible way to execute sampling.</p>
+<h2 id="Rejection-Sampling"><a href="#Rejection-Sampling" class="headerlink" title="Rejection Sampling"></a>Rejection Sampling</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">while not enough samples:</div><div class="line">    x_i ~ q(x)</div><div class="line">    u ~ U(0, 1)</div><div class="line">    if u &lt; p(x_i)/(M * q(x_i)) then</div><div class="line">        accept x_i</div><div class="line">    else </div><div class="line">        reject x_i</div><div class="line">    end if</div><div class="line">end while</div></pre></td></tr></table></figure>
+<img src="/2017/12/12/Overview%20of%20MCMC%20Methods/reject_sampling.png" alt="reject_sampling.png" title="">
+<p>Rejection sampling does not require knowing the function of inverse of CDF. Instead, it use a sampling function q(x), which often has a comparatively simpler form. The influence of original posterior distribution p(x) is demonstrated in the accaption-rejection judgement. When the value of fraction p(x)/Mq(x) is big, it is easier to accept this samples. However, the major problem of this method is that the frequency of rejection is much higher than that of accpetance, especially when x is of high dimension. In this case, rejection sampling is not efficient, and its adaptation is needed.<br>There exists adaptive rejection sampling, where adaptation has been done with respect to the sampling function q(x). By making q(x) approximates p(x) as close as possible, the acception rate could be improved dramatically. The illustration for this adaptation is following:<br><img src="/2017/12/12/Overview%20of%20MCMC%20Methods/adaptive_rejection.png" alt="adaptive_rejection.png" title=""><br>Note that in order to make sure that every tagent has value larger than p(x), p(x) or its transformation must be concave.  </p>
+<h2 id="Importance-Sampling"><a href="#Importance-Sampling" class="headerlink" title="Importance Sampling"></a>Importance Sampling</h2><p>In importance sampling, we introduce q(x) which is comparatively easier to sample than p(x) as that in rejection sampling. Yet q(x) here has different usage. We could transform the original expectation equation into the following form:</p>
+<script type="math/tex; mode=display">E[f(x)] = \int_{x}{[f(x)\frac{p(x)}{q(x)}]q(x)dx}</script><p>$q(x)$ is a new distribution function, and $f(x)\frac{p(x)}{q(x)}$  is a new target function. If we could sample a series of $x^{(i)}$ from the distribution $q(x)$. Then the original integral could be approximated by the following sum: </p>
+<script type="math/tex; mode=display">E[f(x)] = \frac{1}{N}\sum_{i}{f(x^{(i)})\frac{p(x^{(i)})}{q(x^{(i)})}}</script><p>There comes a question: why is this method named “Importance Sampling”?</p>
+<p>That’s because the second part of the expression of $ E[f(x)] $, $p(x^{i})/q(x^{i})$ could be regarded as the weight of $ x^{i} $. Suppose for certain $ x^{a} $, $p(x^{a})$ is big yet the sampling function $q(x^{i})$ is small. It means that under original distribution $p(x)$, $ x^{a} $ is a point that has high probability to be visited. However, under current distribution $q(x)$, $ x^{a} $ has a comparatively lower visiting probability. In order to compensate this, we assign $ x^{a} $ with a higher weight,  $p(x^{i})/q(x^{i})$. Although less likely to be sampled, once added to the sampling sets, this point will contribute greatly to the overall expectation of $f(x)$.</p>
+<h2 id="Metapolis-Hastings-Algorithm"><a href="#Metapolis-Hastings-Algorithm" class="headerlink" title="Metapolis-Hastings Algorithm"></a>Metapolis-Hastings Algorithm</h2><p>To understand MH sampling, first we should have a glimpse about detailed balance. From the definition of WiKiPedia, the principle of detailed balance is formulated for kinetic systems which are decomposed into elementary processes (collisions, or steps, or elementary reactions): <strong>at equilibrium, each elementary process should be equilibrated by its reverse process</strong>.</p>
+<p>From mathematical perspective, we have</p>
+<script type="math/tex; mode=display">p(y) = \int_{x}p(y|x)p(x)dx</script><p>And we further could write it in the following form:</p>
+<script type="math/tex; mode=display">\pi_{t}(x^{*}) = \int_{x}\pi_{t-1}K(x \to x^{*})dx</script><p>$ \pi_{t}(x^{*}) $ refers to the probability to be in the state $x^{*}$ or $p(y)$ in the former equation, and $K(x \to x^{*})$ denotes the probability to transfer from state $x$ to state $x^{*}$ or $p(y|x)$ in the former equation. We could prove that, if detailed balance is satisfied, the equation $ \pi_{t}(x^{*}) = \int_{x}\pi_{t-1}K(x \to x^{*})dx $ holds. </p>
+<script type="math/tex; mode=display">\pi(x)K(x^{*}|x) = \pi(x^{*})K(x|x^{*})</script><p>Then, we get</p>
+<script type="math/tex; mode=display">\int\pi(x)K(x^{*}|x)dx = \int\pi(x^{*})K(x|x^{*})dx = \pi(x^{*})\int K(x|x^{*})dx = \pi(x^{*})</script><p>The following is the pseudo-code for MH sampling.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Initialize x_0</div><div class="line">For i = 0 to N-1:</div><div class="line">	u ~ U(0, 1)</div><div class="line">	x* ~ q(x*|x_i)</div><div class="line">	if u &lt; alpha(x*) = min(1, (pi(x*)q(x|x*))/(pi(x)q(x*|x)):</div><div class="line">		x_(i+1) = x* </div><div class="line">	else:</div><div class="line">		x_(i+1) = x_i</div></pre></td></tr></table></figure></p>
+<p>In order to prove that MH sampling satisfies detailed balance, we need to prove $ \pi(x)K(x^{*} \to x) = \pi(x^{*})K(x \to x^*) $ </p>
+<script type="math/tex; mode=display">K(x \to x^*) = q(x^* | x) min(1, \frac{\pi (x^*) \cdot q(x^* \to x)}{\pi (x) \cdot q(x \to x^*)})</script><script type="math/tex; mode=display">\pi(x)K(x^* \to x) = min(\pi (x)q(x^{*}|x), \pi (x^{*}) q(x|x^{*})) 
+= \pi(x^{*})K(x \to x^*) min(\frac{\pi (x) \cdot q(x \to x^*)}{\pi (x^*) \cdot q(x^* \to x)}, 1)</script>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">Yuanhanqing Huang</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
             </div>
-            <div class="flex-1 is-flex flex-column center full-height">
-                <strong>2</strong>
-                <p>Tags</p>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">Tags</span>
+              
             </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
         </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
     </div>
-    <div id='tag_cloud' class="content-inner content-box">
-        <div class="has-text-centered">
-            <strong>Tags</strong>
-        </div>
-        <div class="content-inner is-flex flex-wrap justify-space-between">
-            
-                <a class="tags-item" href="tags/Bayesian-Modeling-and-Inference/" title="Bayesian Modeling and Inference" rel="2">
-                    Bayesian Modeling and Inference
-                </a>
-            
-                <a class="tags-item" href="tags/Neural-Network-TensorFlow/" title="Neural Network, TensorFlow" rel="1">
-                    Neural Network, TensorFlow
-                </a>
-            
-        </div>
-    </div>
-    <div class="content-inner content-box">
-        <div class="has-text-centered">
-            <strong>Categories</strong>
-        </div>
-        <div class="content-inner">
-            
-        </div>
-    </div>
-    <div class="content-inner content-box">
-        <div class="has-text-centered">
-            <strong>Archives</strong>
-        </div>
-        <div class="content-inner">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li></ul>
-        </div>
-    </div>
-</aside>
-            
-        </div>
-    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuanhanqing Huang</span>
+
+  
 </div>
 
-      </div>
-  </div>
-  <style>
-  #footer {
-    min-height: 10vh;
-    background: black;
-    color: #fff;
-  }
 
-  #footer a {
-    color: #e1e1e1;
-  }
-</style>
-<footer id="footer" class="has-text-centered is-flex center">
-  <div class="container has-padding">
-    <div>
-      <div>
-        <!--请您保留作者署名, 主题制作来之不易-->
-        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
-        <br>
-        Copyright © Yuanhanqing Huang 2019
-        <br>
-        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-      </div>
-    </div>
-  </div>
-</footer>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a></div>
 
-<script src="/js/search_core.js"></script>
-<script src="/js/script.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]]}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>
